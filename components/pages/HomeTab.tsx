@@ -73,37 +73,40 @@ export default function HomeTab({ setActiveTab }: HomeTabProps) {
               style={{
                 width: 76,
                 height: 76,
-                borderRadius: "50%",
-                background: "var(--s3)",
-                border: "1.5px solid var(--border)",
-                overflow: "hidden",
                 position: "relative",
                 flexShrink: 0,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontFamily: "var(--font-bebas)",
-                fontSize: 28,
-                color: "var(--muted)",
               }}
             >
-              <Image
-                src="/avatar.png"
-                alt="Yuri Correia"
-                fill
-                style={{ objectFit: "cover" }}
-              />
+              <div
+                style={{
+                  width: 76,
+                  height: 76,
+                  borderRadius: "50%",
+                  background: "var(--s3)",
+                  border: "1.5px solid var(--border)",
+                  overflow: "hidden",
+                  position: "relative",
+                }}
+              >
+                <Image
+                  src="/avatar.png"
+                  alt="Yuri Correia"
+                  fill
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
               {/* Green dot */}
               <div
                 style={{
                   position: "absolute",
-                  bottom: 3,
-                  right: 3,
-                  width: 13,
-                  height: 13,
+                  bottom: 2,
+                  right: 2,
+                  width: 14,
+                  height: 14,
                   borderRadius: "50%",
                   background: "var(--green)",
-                  border: "2px solid var(--s1)",
+                  border: "2.5px solid var(--s1)",
+                  zIndex: 2,
                 }}
               >
                 <div
