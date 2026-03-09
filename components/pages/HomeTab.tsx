@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Card from "@/components/ui/Card";
 import StatCard from "@/components/ui/StatCard";
 import ProjectRow from "@/components/ui/ProjectRow";
@@ -86,7 +87,12 @@ export default function HomeTab({ setActiveTab }: HomeTabProps) {
                 color: "var(--muted)",
               }}
             >
-              YC
+              <Image
+                src="/avatar.png"
+                alt="Yuri Correia"
+                fill
+                style={{ objectFit: "cover" }}
+              />
               {/* Green dot */}
               <div
                 style={{
