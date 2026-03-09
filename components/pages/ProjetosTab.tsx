@@ -80,7 +80,7 @@ function ProjectCard({ project }: { project: Project }) {
           style={{
             position: "relative",
             width: "100%",
-            height: 200,
+            height: "clamp(160px, 30vw, 200px)",
             overflow: "hidden",
           }}
         >

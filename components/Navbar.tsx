@@ -75,7 +75,7 @@ export default function Navbar({ activeTab, setActiveTab }: NavbarProps) {
     <nav
       style={{
         position: "fixed",
-        top: 16,
+        top: 12,
         left: "50%",
         transform: "translateX(-50%)",
         zIndex: 999,
@@ -84,11 +84,12 @@ export default function Navbar({ activeTab, setActiveTab }: NavbarProps) {
         WebkitBackdropFilter: "blur(24px)",
         border: "1px solid var(--border)",
         borderRadius: 100,
-        padding: "7px 10px",
+        padding: "6px 8px",
         display: "flex",
         alignItems: "center",
         gap: 2,
         transition: "background 0.3s ease, border-color 0.3s ease",
+        maxWidth: "calc(100vw - 16px)",
       }}
     >
       {tabs.map((tab) => (
@@ -101,8 +102,8 @@ export default function Navbar({ activeTab, setActiveTab }: NavbarProps) {
           <button
             onClick={() => setActiveTab(tab.id)}
             style={{
-              width: 40,
-              height: 40,
+              width: 38,
+              height: 38,
               borderRadius: 100,
               border: "none",
               cursor: "pointer",
@@ -146,13 +147,12 @@ export default function Navbar({ activeTab, setActiveTab }: NavbarProps) {
         </div>
       ))}
 
-      {/* Separator */}
       <div
         style={{
           width: 1,
           height: 18,
           background: "var(--border)",
-          margin: "0 6px",
+          margin: "0 4px",
         }}
       />
 
@@ -165,8 +165,8 @@ export default function Navbar({ activeTab, setActiveTab }: NavbarProps) {
         <button
           onClick={toggleTheme}
           style={{
-            width: 40,
-            height: 40,
+            width: 38,
+            height: 38,
             borderRadius: 100,
             border: "none",
             cursor: "pointer",
@@ -219,13 +219,12 @@ export default function Navbar({ activeTab, setActiveTab }: NavbarProps) {
         )}
       </div>
 
-      {/* Separator */}
       <div
         style={{
           width: 1,
           height: 18,
           background: "var(--border)",
-          margin: "0 6px",
+          margin: "0 4px",
         }}
       />
 
@@ -233,28 +232,29 @@ export default function Navbar({ activeTab, setActiveTab }: NavbarProps) {
         href="https://wa.me/5554999003163"
         target="_blank"
         rel="noopener noreferrer"
+        className="nav-cta"
         style={{
           background: "var(--text)",
           color: "var(--bg)",
           borderRadius: 100,
-          padding: "9px 18px",
+          padding: "8px 14px",
           fontFamily: "var(--font-mono)",
           fontSize: 11,
           fontWeight: 500,
-          marginLeft: 4,
           textDecoration: "none",
           display: "flex",
           alignItems: "center",
-          gap: 6,
+          gap: 5,
           border: "none",
           cursor: "pointer",
           transition: "all 0.3s ease",
+          whiteSpace: "nowrap",
         }}
       >
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
           <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
         </svg>
-        Contratar
+        <span className="nav-cta-text">Contratar</span>
       </a>
     </nav>
   );

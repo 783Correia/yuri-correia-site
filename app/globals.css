@@ -61,6 +61,16 @@ body {
   transition: background 0.3s ease, color 0.3s ease;
 }
 
+/* Mobile: hide CTA text, show only icon */
+@media (max-width: 480px) {
+  .nav-cta-text {
+    display: none !important;
+  }
+  .nav-cta {
+    padding: 8px 10px !important;
+  }
+}
+
 @keyframes rip {
   0% {
     transform: scale(1);
@@ -111,3 +121,20 @@ body {
 .stagger-child:nth-child(3) { animation-delay: 0.20s; }
 .stagger-child:nth-child(4) { animation-delay: 0.28s; }
 .stagger-child:nth-child(5) { animation-delay: 0.36s; }
+
+/* Stats grid responsive */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .fact-grid {
+    grid-template-columns: 1fr !important;
+  }
+}

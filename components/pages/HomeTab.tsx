@@ -19,8 +19,9 @@ export default function HomeTab({ setActiveTab }: HomeTabProps) {
       <div className="stagger-child">
         <Card
           style={{
-            padding: "36px 36px 32px",
-            minHeight: 320,
+            padding: "clamp(24px, 5vw, 36px)",
+            paddingBottom: "clamp(20px, 4vw, 32px)",
+            minHeight: 280,
             position: "relative",
             overflow: "hidden",
           }}
@@ -46,7 +47,7 @@ export default function HomeTab({ setActiveTab }: HomeTabProps) {
               top: -10,
               right: 20,
               fontFamily: "var(--font-bebas)",
-              fontSize: 220,
+              fontSize: "clamp(120px, 25vw, 220px)",
               color: "transparent",
               WebkitTextStroke: "1px rgba(255,255,255,0.04)",
               pointerEvents: "none",
@@ -61,9 +62,9 @@ export default function HomeTab({ setActiveTab }: HomeTabProps) {
           <div
             style={{
               display: "flex",
-              gap: 20,
+              gap: "clamp(12px, 3vw, 20px)",
               alignItems: "flex-start",
-              marginBottom: 28,
+              marginBottom: "clamp(20px, 4vw, 28px)",
               position: "relative",
               zIndex: 1,
             }}
@@ -71,16 +72,16 @@ export default function HomeTab({ setActiveTab }: HomeTabProps) {
             {/* Avatar */}
             <div
               style={{
-                width: 76,
-                height: 76,
+                width: "clamp(56px, 12vw, 76px)",
+                height: "clamp(56px, 12vw, 76px)",
                 position: "relative",
                 flexShrink: 0,
               }}
             >
               <div
                 style={{
-                  width: 76,
-                  height: 76,
+                  width: "100%",
+                  height: "100%",
                   borderRadius: "50%",
                   background: "var(--s3)",
                   border: "1.5px solid var(--border)",
@@ -122,27 +123,29 @@ export default function HomeTab({ setActiveTab }: HomeTabProps) {
             </div>
 
             {/* Text */}
-            <div>
+            <div style={{ minWidth: 0 }}>
               <div
                 style={{
                   display: "flex",
                   alignItems: "center",
                   gap: 6,
                   fontFamily: "var(--font-mono)",
-                  fontSize: 10,
+                  fontSize: "clamp(8px, 2vw, 10px)",
                   color: "var(--muted)",
                   letterSpacing: "0.06em",
                   marginBottom: 4,
+                  flexWrap: "wrap",
                 }}
               >
                 Desenvolvedor de Projetos Digitais
                 <span
                   style={{
-                    width: 5,
-                    height: 5,
+                    width: 4,
+                    height: 4,
                     borderRadius: "50%",
                     background: "var(--muted2)",
                     display: "inline-block",
+                    flexShrink: 0,
                   }}
                 />
                 Lagoa Vermelha RS
@@ -150,7 +153,7 @@ export default function HomeTab({ setActiveTab }: HomeTabProps) {
               <h1
                 style={{
                   fontFamily: "var(--font-bebas)",
-                  fontSize: 44,
+                  fontSize: "clamp(32px, 7vw, 44px)",
                   letterSpacing: "0.04em",
                   lineHeight: 1,
                   margin: 0,
@@ -180,6 +183,7 @@ export default function HomeTab({ setActiveTab }: HomeTabProps) {
                     borderRadius: "50%",
                     background: "var(--green)",
                     animation: "pls 2s ease-in-out infinite",
+                    flexShrink: 0,
                   }}
                 />
                 Disponível para projetos
@@ -191,12 +195,12 @@ export default function HomeTab({ setActiveTab }: HomeTabProps) {
           <p
             style={{
               fontFamily: "var(--font-dm)",
-              fontSize: 15,
+              fontSize: "clamp(13px, 3vw, 15px)",
               fontWeight: 300,
               lineHeight: 1.72,
               color: "var(--muted)",
               maxWidth: 520,
-              marginBottom: 28,
+              marginBottom: "clamp(20px, 4vw, 28px)",
               position: "relative",
               zIndex: 1,
             }}
@@ -215,9 +219,10 @@ export default function HomeTab({ setActiveTab }: HomeTabProps) {
             style={{
               display: "flex",
               gap: 10,
-              marginBottom: 28,
+              marginBottom: "clamp(20px, 4vw, 28px)",
               position: "relative",
               zIndex: 1,
+              flexWrap: "wrap",
             }}
           >
             <a
@@ -239,16 +244,7 @@ export default function HomeTab({ setActiveTab }: HomeTabProps) {
                 border: "none",
               }}
             >
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.6"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
               </svg>
               Falar no WhatsApp
@@ -278,7 +274,7 @@ export default function HomeTab({ setActiveTab }: HomeTabProps) {
           <div
             style={{
               borderTop: "1px solid var(--border)",
-              paddingTop: 24,
+              paddingTop: 20,
               display: "flex",
               gap: 10,
               position: "relative",
@@ -343,13 +339,7 @@ export default function HomeTab({ setActiveTab }: HomeTabProps) {
 
       {/* Stats Bento */}
       <div className="stagger-child">
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: 12,
-          }}
-        >
+        <div className="stats-grid">
           <StatCard value="5" symbol="+" label="Anos ativo" />
           <StatCard value="20" symbol="+" label="Projetos" />
           <StatCard value="∞" label="Comprometido" />
@@ -369,16 +359,10 @@ export default function HomeTab({ setActiveTab }: HomeTabProps) {
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
-              padding: "22px 28px 0",
+              padding: "18px 20px 0",
             }}
           >
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 10,
-              }}
-            >
+            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
               <span
                 style={{
                   width: 7,

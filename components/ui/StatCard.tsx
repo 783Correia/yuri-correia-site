@@ -19,7 +19,7 @@ export default function StatCard({ value, symbol, label }: StatCardProps) {
         background: "var(--s1)",
         border: `1px solid ${hovered ? "var(--border-h)" : "var(--border)"}`,
         borderRadius: "var(--radius)",
-        padding: "28px 24px",
+        padding: "clamp(18px, 4vw, 28px) clamp(14px, 3vw, 24px)",
         position: "relative",
         overflow: "hidden",
         transform: hovered ? "translateY(-3px)" : "translateY(0)",
@@ -41,20 +41,20 @@ export default function StatCard({ value, symbol, label }: StatCardProps) {
       <div
         style={{
           fontFamily: "var(--font-bebas)",
-          fontSize: 52,
+          fontSize: "clamp(36px, 8vw, 52px)",
           lineHeight: 1,
           color: "var(--text)",
         }}
       >
         {value}
         {symbol && (
-          <span style={{ color: "var(--orange)", fontSize: 32 }}>{symbol}</span>
+          <span style={{ color: "var(--orange)", fontSize: "clamp(22px, 5vw, 32px)" }}>{symbol}</span>
         )}
       </div>
       <div
         style={{
           fontFamily: "var(--font-mono)",
-          fontSize: 9,
+          fontSize: "clamp(7px, 1.8vw, 9px)",
           fontWeight: 300,
           color: "var(--muted)",
           letterSpacing: "0.1em",

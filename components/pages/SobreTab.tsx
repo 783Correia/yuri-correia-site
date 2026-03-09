@@ -8,7 +8,7 @@ export default function SobreTab() {
     <>
       {/* About Card */}
       <div className="stagger-child">
-        <Card style={{ padding: "44px 40px", position: "relative" }}>
+        <Card style={{ padding: "clamp(28px, 6vw, 44px) clamp(20px, 5vw, 40px)", position: "relative" }}>
           {/* Decorative 27 */}
           <div
             style={{
@@ -16,7 +16,7 @@ export default function SobreTab() {
               top: -5,
               right: 30,
               fontFamily: "var(--font-bebas)",
-              fontSize: 120,
+              fontSize: "clamp(80px, 16vw, 120px)",
               color: "transparent",
               WebkitTextStroke: "1px rgba(255,255,255,0.04)",
               pointerEvents: "none",
@@ -30,10 +30,10 @@ export default function SobreTab() {
           <h2
             style={{
               fontFamily: "var(--font-bebas)",
-              fontSize: "clamp(38px, 6vw, 64px)",
+              fontSize: "clamp(32px, 6vw, 64px)",
               letterSpacing: "0.04em",
               lineHeight: 1.05,
-              marginBottom: 28,
+              marginBottom: "clamp(18px, 4vw, 28px)",
               position: "relative",
               zIndex: 1,
             }}
@@ -56,7 +56,7 @@ export default function SobreTab() {
             style={{
               display: "flex",
               flexDirection: "column",
-              gap: 18,
+              gap: 16,
               maxWidth: 540,
               position: "relative",
               zIndex: 1,
@@ -65,7 +65,7 @@ export default function SobreTab() {
             <p
               style={{
                 fontFamily: "var(--font-dm)",
-                fontSize: 14,
+                fontSize: "clamp(13px, 3vw, 14px)",
                 fontWeight: 300,
                 lineHeight: 1.82,
                 color: "var(--muted)",
@@ -81,7 +81,7 @@ export default function SobreTab() {
             <p
               style={{
                 fontFamily: "var(--font-dm)",
-                fontSize: 14,
+                fontSize: "clamp(13px, 3vw, 14px)",
                 fontWeight: 300,
                 lineHeight: 1.82,
                 color: "var(--muted)",
@@ -100,13 +100,12 @@ export default function SobreTab() {
             <p
               style={{
                 fontFamily: "var(--font-dm)",
-                fontSize: 14,
+                fontSize: "clamp(13px, 3vw, 14px)",
                 fontWeight: 300,
                 lineHeight: 1.82,
                 color: "var(--muted)",
               }}
             >
-              Opero sob a marca{" "}
               Atendo empresas B2B no agronegócio e na indústria que precisam de
               presença digital séria — não de portfólio de agência.
             </p>
@@ -117,9 +116,10 @@ export default function SobreTab() {
             style={{
               display: "flex",
               gap: 10,
-              marginTop: 32,
+              marginTop: "clamp(24px, 5vw, 32px)",
               position: "relative",
               zIndex: 1,
+              flexWrap: "wrap",
             }}
           >
             <a
@@ -166,6 +166,7 @@ export default function SobreTab() {
       {/* Fact Grid */}
       <div className="stagger-child">
         <div
+          className="fact-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(2, 1fr)",

@@ -37,8 +37,8 @@ export default function ProjectRow({
         style={{
           display: "flex",
           alignItems: "center",
-          gap: 16,
-          padding: "18px 28px",
+          gap: "clamp(10px, 3vw, 16px)",
+          padding: "14px clamp(14px, 4vw, 28px)",
           borderBottom: isLast ? "none" : "1px solid var(--border)",
           background: hovered ? "var(--s2)" : "transparent",
           transition: "background 0.2s ease",
@@ -46,8 +46,8 @@ export default function ProjectRow({
       >
         <div
           style={{
-            width: 46,
-            height: 46,
+            width: "clamp(36px, 8vw, 46px)",
+            height: "clamp(36px, 8vw, 46px)",
             borderRadius: 12,
             background: "var(--s3)",
             border: "1px solid var(--border)",
@@ -56,7 +56,6 @@ export default function ProjectRow({
             justifyContent: "center",
             flexShrink: 0,
             overflow: "hidden",
-            padding: 6,
             position: "relative",
           }}
         >
@@ -71,9 +70,12 @@ export default function ProjectRow({
           <div
             style={{
               fontFamily: "var(--font-dm)",
-              fontSize: 14,
+              fontSize: "clamp(12px, 3vw, 14px)",
               fontWeight: 500,
               color: "var(--text)",
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
             }}
           >
             {name}
@@ -82,9 +84,12 @@ export default function ProjectRow({
             <div
               style={{
                 fontFamily: "var(--font-mono)",
-                fontSize: 10,
+                fontSize: "clamp(8px, 2vw, 10px)",
                 color: "var(--muted)",
                 marginTop: 2,
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
               }}
             >
               {description}
@@ -118,11 +123,11 @@ export default function ProjectRow({
           <span
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: 9,
+              fontSize: "clamp(7px, 1.8vw, 9px)",
               background: "var(--orange-s)",
               border: "1px solid var(--orange-b)",
               borderRadius: 100,
-              padding: "3px 9px",
+              padding: "3px 8px",
               color: "var(--orange)",
               whiteSpace: "nowrap",
               flexShrink: 0,

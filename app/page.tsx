@@ -29,7 +29,7 @@ export default function Home() {
     <>
       <Navbar activeTab={activeTab} setActiveTab={setActiveTab} />
       <div
-        style={{ maxWidth: 720, width: "100%", marginTop: 92 }}
+        style={{ maxWidth: 720, width: "100%", marginTop: "clamp(68px, 14vw, 92px)" }}
         key={activeTab}
       >
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
