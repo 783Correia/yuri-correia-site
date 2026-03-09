@@ -7,7 +7,7 @@ export default function Ticker() {
     "Agronegócio",
     "Next.js",
     "IA Aplicada",
-    "Onetech",
+    "Yuri Correia",
   ];
 
   const renderGroup = () =>

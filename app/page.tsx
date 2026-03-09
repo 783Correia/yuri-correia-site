@@ -56,7 +56,7 @@ export default function Home() {
             letterSpacing: "0.08em",
           }}
         >
-          © 2026 · Onetech · Lagoa Vermelha RS
+          © 2026 · Yuri Correia · Lagoa Vermelha RS
         </span>
         <span
           style={{

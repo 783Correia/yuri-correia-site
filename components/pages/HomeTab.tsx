@@ -410,6 +410,7 @@ export default function HomeTab({ setActiveTab }: HomeTabProps) {
               name="Torno Metal Everton Lopes"
               pill="↗ Receita"
             />
+            <ProjectRow icon="💰" name="Sales EMB" pill="↗ +370% receita" />
             <ProjectRow icon="🏗️" name="Jacó Locadora" pill="Anti-fraud" />
             <ProjectRow icon="⚙️" name="Agilizza Soluções" isLast />
           </div>

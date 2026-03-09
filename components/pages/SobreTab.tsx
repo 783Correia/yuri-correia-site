@@ -107,8 +107,7 @@ export default function SobreTab() {
               }}
             >
               Opero sob a marca{" "}
-              <strong style={{ color: "var(--text)" }}>Onetech</strong>. Atendo
-              empresas B2B no agronegócio e na indústria que precisam de
+              Atendo empresas B2B no agronegócio e na indústria que precisam de
               presença digital séria — não de portfólio de agência.
             </p>
           </div>
