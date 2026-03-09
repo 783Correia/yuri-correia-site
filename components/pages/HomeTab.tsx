@@ -415,13 +415,29 @@ export default function HomeTab({ setActiveTab }: HomeTabProps) {
           </div>
           <div style={{ marginTop: 12 }}>
             <ProjectRow
-              icon="🌱"
+              logo="/logos/torno-metal.png"
               name="Torno Metal Everton Lopes"
               pill="↗ Receita"
+              href="https://tornometalevertonlopes.com.br/"
             />
-            <ProjectRow icon="💰" name="Sales EMB" pill="↗ +370% receita" />
-            <ProjectRow icon="🏗️" name="Jacó Locadora" pill="Anti-fraud" />
-            <ProjectRow icon="⚙️" name="Agilizza Soluções" isLast />
+            <ProjectRow
+              logo="/logos/sales-emb.png"
+              name="Sales EMB"
+              pill="↗ +370% receita"
+              href="https://salesemb.com.br/"
+            />
+            <ProjectRow
+              logo="/logos/jaco-locadora.png"
+              name="Jacó Locadora"
+              pill="Anti-fraud"
+              href="https://www.jacolocadora.com.br/"
+            />
+            <ProjectRow
+              logo="/logos/agilizza.png"
+              name="Agilizza Soluções"
+              href="https://agilizzasolucoes.com.br/"
+              isLast
+            />
           </div>
         </Card>
       </div>

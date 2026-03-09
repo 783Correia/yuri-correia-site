@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 
 interface Project {
-  icon: string;
+  logo: string;
   name: string;
   description: string;
   pill?: string;
@@ -14,7 +14,7 @@ interface Project {
 
 const projects: Project[] = [
   {
-    icon: "🌱",
+    logo: "/logos/torno-metal.png",
     name: "Torno Metal Everton Lopes",
     description: "Agro · B2B · Landing page + Posicionamento para revendedores",
     pill: "↗ Receita comprovada",
@@ -22,7 +22,7 @@ const projects: Project[] = [
     url: "https://tornometalevertonlopes.com.br/",
   },
   {
-    icon: "💰",
+    logo: "/logos/sales-emb.png",
     name: "Sales EMB",
     description: "B2B · Embalagens · De R$35k para R$165k faturados após implementação",
     pill: "↗ +370% receita",
@@ -30,7 +30,7 @@ const projects: Project[] = [
     url: "https://salesemb.com.br/",
   },
   {
-    icon: "🏗️",
+    logo: "/logos/jaco-locadora.png",
     name: "Jacó Locadora",
     description: "Industrial · Plataformas elevatórias · Anti-click fraud Cloudflare",
     pill: "Anti-fraud",
@@ -38,14 +38,14 @@ const projects: Project[] = [
     url: "https://www.jacolocadora.com.br/",
   },
   {
-    icon: "⚙️",
+    logo: "/logos/agilizza.png",
     name: "Agilizza Soluções",
     description: "B2B · Site institucional · Identidade digital do zero",
     image: "/projects/agilizza.png",
     url: "https://agilizzasolucoes.com.br/",
   },
   {
-    icon: "🎮",
+    logo: "/logos/tecnoplay.png",
     name: "TecnoPlay",
     description: "E-commerce · Produto digital · Tecnologia",
     image: "/projects/tecnoplay.png",
@@ -116,7 +116,23 @@ function ProjectCard({ project }: { project: Project }) {
               marginBottom: 6,
             }}
           >
-            <span style={{ fontSize: 20 }}>{project.icon}</span>
+            <div
+              style={{
+                width: 28,
+                height: 28,
+                borderRadius: 6,
+                overflow: "hidden",
+                position: "relative",
+                flexShrink: 0,
+              }}
+            >
+              <Image
+                src={project.logo}
+                alt={project.name}
+                fill
+                style={{ objectFit: "contain" }}
+              />
+            </div>
             <span
               style={{
                 fontFamily: "var(--font-dm)",

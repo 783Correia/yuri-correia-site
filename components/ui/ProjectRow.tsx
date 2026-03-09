@@ -1,29 +1,34 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 interface ProjectRowProps {
-  icon: string;
+  logo: string;
   name: string;
   description?: string;
   tags?: string[];
   pill?: string;
   isLast?: boolean;
+  href?: string;
 }
 
 export default function ProjectRow({
-  icon,
+  logo,
   name,
   description,
   tags,
   pill,
   isLast,
+  href = "#",
 }: ProjectRowProps) {
   const [hovered, setHovered] = useState(false);
 
   return (
     <a
-      href="#"
+      href={href}
+      target={href !== "#" ? "_blank" : undefined}
+      rel={href !== "#" ? "noopener noreferrer" : undefined}
       style={{ textDecoration: "none", color: "inherit" }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -49,11 +54,18 @@ export default function ProjectRow({
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            fontSize: 22,
             flexShrink: 0,
+            overflow: "hidden",
+            padding: 6,
+            position: "relative",
           }}
         >
-          {icon}
+          <Image
+            src={logo}
+            alt={name}
+            fill
+            style={{ objectFit: "contain", padding: 6 }}
+          />
         </div>
         <div style={{ flex: 1, minWidth: 0 }}>
           <div
