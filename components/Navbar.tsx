@@ -138,7 +138,7 @@ export default function Navbar({ activeTab, setActiveTab }: NavbarProps) {
       />
 
       <a
-        href="https://wa.me/5554999999999"
+        href="https://wa.me/5554999003163"
         target="_blank"
         rel="noopener noreferrer"
         style={{
