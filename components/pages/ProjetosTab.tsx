@@ -91,15 +91,15 @@ function ProjectCard({ project }: { project: Project }) {
           overflow: "hidden",
           transition: "all 0.25s ease",
           transform: hovered ? "translateY(-4px)" : "translateY(0)",
+          height: "100%",
         }}
       >
-        {/* Hero Image */}
         {project.image && (
           <div
             style={{
               position: "relative",
               width: "100%",
-              height: "clamp(160px, 30vw, 200px)",
+              height: "clamp(160px, 22vw, 220px)",
               overflow: "hidden",
             }}
           >
@@ -118,16 +118,36 @@ function ProjectCard({ project }: { project: Project }) {
               style={{
                 position: "absolute",
                 inset: 0,
-                background:
-                  "linear-gradient(to top, var(--s1) 0%, transparent 40%)",
+                background: "linear-gradient(to top, var(--s1) 0%, transparent 40%)",
                 pointerEvents: "none",
               }}
             />
           </div>
         )}
+        {!project.image && (
+          <div
+            style={{
+              height: 80,
+              background: "linear-gradient(135deg, var(--s2) 0%, var(--s3) 100%)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <span
+              style={{
+                fontFamily: "var(--font-bebas)",
+                fontSize: 32,
+                color: "var(--orange)",
+                opacity: 0.3,
+              }}
+            >
+              {project.name.charAt(0)}
+            </span>
+          </div>
+        )}
 
-        {/* Info */}
-        <div style={{ padding: project.image ? "16px 24px 22px" : "24px 24px 22px" }}>
+        <div style={{ padding: "16px 24px 22px" }}>
           <div
             style={{
               display: "flex",
@@ -147,12 +167,7 @@ function ProjectCard({ project }: { project: Project }) {
                   flexShrink: 0,
                 }}
               >
-                <Image
-                  src={project.logo}
-                  alt={project.name}
-                  fill
-                  style={{ objectFit: "contain" }}
-                />
+                <Image src={project.logo} alt={project.name} fill style={{ objectFit: "contain" }} />
               </div>
             )}
             {!project.logo && (
@@ -204,6 +219,7 @@ function ProjectCard({ project }: { project: Project }) {
               fontSize: 10,
               color: "var(--muted)",
               marginBottom: project.pill ? 10 : 0,
+              lineHeight: 1.6,
             }}
           >
             {project.description}
@@ -231,54 +247,43 @@ function ProjectCard({ project }: { project: Project }) {
 
 export default function ProjetosTab() {
   return (
-    <section id="cases" style={{ scrollMarginTop: 80 }}>
-      <div className="stagger-child">
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            padding: "0 4px",
-            marginBottom: 4,
-          }}
-        >
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <span
-              style={{
-                width: 7,
-                height: 7,
-                borderRadius: "50%",
-                background: "var(--orange)",
-                display: "inline-block",
-              }}
-            />
-            <span
-              style={{
-                fontFamily: "var(--font-bebas)",
-                fontSize: 18,
-                letterSpacing: "0.12em",
-              }}
-            >
-              Cases com resultado
-            </span>
-          </div>
-          <span
+    <section id="cases" className="section-full" style={{ scrollMarginTop: 80 }}>
+      <div className="section-wrapper">
+        <div className="reveal">
+          <h2
             style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: 10,
-              color: "var(--muted2)",
+              fontFamily: "var(--font-bebas)",
+              fontSize: "clamp(40px, 8vw, 80px)",
+              letterSpacing: "0.06em",
+              lineHeight: 1,
+              marginBottom: 8,
             }}
           >
-            {projects.length} projetos
-          </span>
+            CASES COM{" "}
+            <span style={{ color: "var(--orange)" }}>RESULTADO</span>
+          </h2>
+          <p
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: 11,
+              color: "var(--muted)",
+              marginBottom: "clamp(32px, 5vw, 56px)",
+              textTransform: "uppercase",
+              letterSpacing: "0.08em",
+            }}
+          >
+            {projects.length} projetos entregues
+          </p>
+        </div>
+
+        <div className="projects-grid">
+          {projects.map((project, i) => (
+            <div key={project.name} className={`reveal reveal-delay-${(i % 4) + 1}`}>
+              <ProjectCard project={project} />
+            </div>
+          ))}
         </div>
       </div>
-
-      {projects.map((project) => (
-        <div key={project.name} style={{ marginTop: 12 }}>
-          <ProjectCard project={project} />
-        </div>
-      ))}
     </section>
   );
 }

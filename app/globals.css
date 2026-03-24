@@ -19,6 +19,8 @@
   --radius: 20px;
   --nav-bg: rgba(18, 17, 16, 0.88);
   --logo-brightness: 1;
+  --section-bg: var(--bg);
+  --section-bg-alt: #0E0D0B;
 }
 
 [data-theme="light"] {
@@ -37,6 +39,8 @@
   --green: #059669;
   --nav-bg: rgba(255, 255, 255, 0.88);
   --logo-brightness: 0;
+  --section-bg: var(--bg);
+  --section-bg-alt: #EDEAE7;
 }
 
 * {
@@ -48,17 +52,32 @@
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 28px 16px 100px;
   transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Section wrapper — content max-width */
+.section-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 48px);
+  width: 100%;
+}
+
+/* Full-bleed section */
+.section-full {
+  width: 100%;
+  padding: clamp(64px, 10vw, 120px) 0;
+}
+
+.section-alt {
+  background: var(--section-bg-alt);
 }
 
 /* Mobile: hide CTA text, show only icon */
@@ -71,87 +90,114 @@ body {
   }
 }
 
+/* Animations */
 @keyframes rip {
-  0% {
-    transform: scale(1);
-    opacity: 0.5;
-  }
-  100% {
-    transform: scale(2.8);
-    opacity: 0;
-  }
+  0% { transform: scale(1); opacity: 0.5; }
+  100% { transform: scale(2.8); opacity: 0; }
 }
 
 @keyframes pls {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.3;
-  }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
 }
 
 @keyframes tick {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 @keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.stagger-child {
+/* Scroll-triggered reveal */
+.reveal {
   opacity: 0;
-  animation: fadeUp 0.45s ease forwards;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.stagger-child:nth-child(1) { animation-delay: 0.04s; }
-.stagger-child:nth-child(2) { animation-delay: 0.12s; }
-.stagger-child:nth-child(3) { animation-delay: 0.20s; }
-.stagger-child:nth-child(4) { animation-delay: 0.28s; }
-.stagger-child:nth-child(5) { animation-delay: 0.36s; }
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-/* Stats grid responsive */
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* Stats grid */
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-/* Packages grid */
-.packages-grid {
+/* Projects grid */
+.projects-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(16px, 3vw, 24px);
 }
 
-@media (max-width: 680px) {
-  .packages-grid {
+@media (max-width: 768px) {
+  .projects-grid {
     grid-template-columns: 1fr;
   }
 }
 
-@media (max-width: 480px) {
+/* Fact grid */
+.fact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(16px, 3vw, 24px);
+}
+
+@media (max-width: 600px) {
+  .fact-grid {
+    grid-template-columns: 1fr;
+  }
   .stats-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: 8px;
   }
-  .fact-grid {
-    grid-template-columns: 1fr !important;
+}
+
+/* Logos strip */
+.logos-strip {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: tick 20s linear infinite;
+}
+
+.logos-strip img {
+  height: 28px;
+  margin: 0 clamp(24px, 4vw, 48px);
+  opacity: 0.4;
+  filter: grayscale(1) brightness(var(--logo-brightness));
+  transition: opacity 0.3s ease;
+}
+
+[data-theme="light"] .logos-strip img {
+  filter: grayscale(1) brightness(0.3);
+}
+
+.logos-strip img:hover {
+  opacity: 0.7;
+}
+
+/* Services horizontal layout */
+.services-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(16px, 3vw, 24px);
+}
+
+@media (max-width: 768px) {
+  .services-row {
+    grid-template-columns: 1fr;
   }
 }

@@ -2,55 +2,19 @@
 
 import { useState, useEffect } from "react";
 
-type Section = "inicio" | "cases" | "servicos" | "sobre";
+type Section = "inicio" | "cases" | "servicos" | "sobre" | "faq";
 
-const sections: { id: Section; label: string; icon: React.ReactNode }[] = [
-  {
-    id: "inicio",
-    label: "Início",
-    icon: (
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H5a1 1 0 01-1-1V9.5z" />
-        <path d="M9 21V12h6v9" />
-      </svg>
-    ),
-  },
-  {
-    id: "cases",
-    label: "Cases",
-    icon: (
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="3" width="20" height="14" rx="2" />
-        <path d="M8 21h8M12 17v4" />
-      </svg>
-    ),
-  },
-  {
-    id: "servicos",
-    label: "Serviços",
-    icon: (
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-      </svg>
-    ),
-  },
-  {
-    id: "sobre",
-    label: "Sobre",
-    icon: (
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="8" r="4" />
-        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
-      </svg>
-    ),
-  },
+const navLinks: { id: Section; label: string }[] = [
+  { id: "cases", label: "Cases" },
+  { id: "servicos", label: "Serviços" },
+  { id: "sobre", label: "Sobre" },
+  { id: "faq", label: "FAQ" },
 ];
 
 export default function Navbar() {
-  const [hoveredSection, setHoveredSection] = useState<Section | null>(null);
   const [activeSection, setActiveSection] = useState<Section>("inicio");
   const [theme, setTheme] = useState<"dark" | "light">("dark");
-  const [themeHovered, setThemeHovered] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const saved = localStorage.getItem("theme") as "dark" | "light" | null;
@@ -62,15 +26,18 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const offsets = sections.map((s) => {
-        const el = document.getElementById(s.id);
+      setScrolled(window.scrollY > 60);
+
+      const sectionIds: Section[] = ["inicio", "cases", "servicos", "sobre", "faq"];
+      const offsets = sectionIds.map((id) => {
+        const el = document.getElementById(id);
         return el ? el.offsetTop - 120 : 0;
       });
       const scrollY = window.scrollY;
       let current: Section = "inicio";
       for (let i = offsets.length - 1; i >= 0; i--) {
         if (scrollY >= offsets[i]) {
-          current = sections[i].id;
+          current = sectionIds[i];
           break;
         }
       }
@@ -82,9 +49,7 @@ export default function Navbar() {
 
   const scrollTo = (id: Section) => {
     const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   const toggleTheme = () => {
@@ -102,72 +67,58 @@ export default function Navbar() {
         left: "50%",
         transform: "translateX(-50%)",
         zIndex: 999,
-        background: "var(--nav-bg)",
-        backdropFilter: "blur(24px)",
-        WebkitBackdropFilter: "blur(24px)",
-        border: "1px solid var(--border)",
+        background: scrolled ? "var(--nav-bg)" : "transparent",
+        backdropFilter: scrolled ? "blur(24px)" : "none",
+        WebkitBackdropFilter: scrolled ? "blur(24px)" : "none",
+        border: scrolled ? "1px solid var(--border)" : "1px solid transparent",
         borderRadius: 100,
-        padding: "6px 8px",
+        padding: "6px 10px 6px 18px",
         display: "flex",
         alignItems: "center",
-        gap: 2,
-        transition: "background 0.3s ease, border-color 0.3s ease",
+        gap: 4,
+        transition: "all 0.3s ease",
         maxWidth: "calc(100vw - 16px)",
       }}
     >
-      {sections.map((section) => (
-        <div
-          key={section.id}
-          style={{ position: "relative" }}
-          onMouseEnter={() => setHoveredSection(section.id)}
-          onMouseLeave={() => setHoveredSection(null)}
+      {/* Logo */}
+      <button
+        onClick={() => scrollTo("inicio")}
+        style={{
+          background: "none",
+          border: "none",
+          cursor: "pointer",
+          fontFamily: "var(--font-bebas)",
+          fontSize: 18,
+          letterSpacing: "0.1em",
+          color: "var(--text)",
+          marginRight: 12,
+          whiteSpace: "nowrap",
+        }}
+      >
+        CORRE<span style={{ color: "var(--orange)" }}>.</span>IA
+      </button>
+
+      {/* Nav links */}
+      {navLinks.map((link) => (
+        <button
+          key={link.id}
+          onClick={() => scrollTo(link.id)}
+          style={{
+            background: activeSection === link.id ? "var(--s3)" : "transparent",
+            border: "none",
+            cursor: "pointer",
+            borderRadius: 100,
+            padding: "7px 14px",
+            fontFamily: "var(--font-dm)",
+            fontSize: 13,
+            fontWeight: 400,
+            color: activeSection === link.id ? "var(--text)" : "var(--muted)",
+            transition: "all 0.2s ease",
+            whiteSpace: "nowrap",
+          }}
         >
-          <button
-            onClick={() => scrollTo(section.id)}
-            style={{
-              width: 38,
-              height: 38,
-              borderRadius: 100,
-              border: "none",
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color:
-                activeSection === section.id || hoveredSection === section.id
-                  ? "var(--text)"
-                  : "var(--muted)",
-              background:
-                activeSection === section.id || hoveredSection === section.id
-                  ? "var(--s3)"
-                  : "transparent",
-              transition: "all 0.2s ease",
-            }}
-          >
-            {section.icon}
-          </button>
-          {hoveredSection === section.id && (
-            <span
-              style={{
-                position: "absolute",
-                bottom: -34,
-                left: "50%",
-                transform: "translateX(-50%)",
-                fontFamily: "var(--font-mono)",
-                fontSize: 9,
-                background: "var(--s2)",
-                border: "1px solid var(--border)",
-                borderRadius: 6,
-                padding: "4px 8px",
-                whiteSpace: "nowrap",
-                color: "var(--text)",
-                pointerEvents: "none",
-              }}
-            >
-              {section.label}
-            </span>
-          )}
-        </div>
+          {link.label}
+        </button>
       ))}
 
       <div
@@ -175,82 +126,49 @@ export default function Navbar() {
           width: 1,
           height: 18,
           background: "var(--border)",
-          margin: "0 4px",
+          margin: "0 6px",
+          flexShrink: 0,
         }}
       />
 
       {/* Theme toggle */}
-      <div
-        style={{ position: "relative" }}
-        onMouseEnter={() => setThemeHovered(true)}
-        onMouseLeave={() => setThemeHovered(false)}
-      >
-        <button
-          onClick={toggleTheme}
-          style={{
-            width: 38,
-            height: 38,
-            borderRadius: 100,
-            border: "none",
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            color: themeHovered ? "var(--text)" : "var(--muted)",
-            background: themeHovered ? "var(--s3)" : "transparent",
-            transition: "all 0.2s ease",
-          }}
-        >
-          {theme === "dark" ? (
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="12" cy="12" r="5" />
-              <line x1="12" y1="1" x2="12" y2="3" />
-              <line x1="12" y1="21" x2="12" y2="23" />
-              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-              <line x1="1" y1="12" x2="3" y2="12" />
-              <line x1="21" y1="12" x2="23" y2="12" />
-              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-            </svg>
-          ) : (
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
-            </svg>
-          )}
-        </button>
-        {themeHovered && (
-          <span
-            style={{
-              position: "absolute",
-              bottom: -34,
-              left: "50%",
-              transform: "translateX(-50%)",
-              fontFamily: "var(--font-mono)",
-              fontSize: 9,
-              background: "var(--s2)",
-              border: "1px solid var(--border)",
-              borderRadius: 6,
-              padding: "4px 8px",
-              whiteSpace: "nowrap",
-              color: "var(--text)",
-              pointerEvents: "none",
-            }}
-          >
-            {theme === "dark" ? "Light" : "Dark"}
-          </span>
-        )}
-      </div>
-
-      <div
+      <button
+        onClick={toggleTheme}
         style={{
-          width: 1,
-          height: 18,
-          background: "var(--border)",
-          margin: "0 4px",
+          width: 34,
+          height: 34,
+          borderRadius: 100,
+          border: "none",
+          cursor: "pointer",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          color: "var(--muted)",
+          background: "transparent",
+          transition: "all 0.2s ease",
+          flexShrink: 0,
         }}
-      />
+      >
+        {theme === "dark" ? (
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </svg>
+        ) : (
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+          </svg>
+        )}
+      </button>
 
+      {/* CTA */}
       <a
         href="https://wa.me/5554999003163"
         target="_blank"
@@ -260,18 +178,19 @@ export default function Navbar() {
           background: "var(--text)",
           color: "var(--bg)",
           borderRadius: 100,
-          padding: "8px 14px",
-          fontFamily: "var(--font-mono)",
-          fontSize: 11,
+          padding: "8px 16px",
+          fontFamily: "var(--font-dm)",
+          fontSize: 13,
           fontWeight: 500,
           textDecoration: "none",
           display: "flex",
           alignItems: "center",
-          gap: 5,
+          gap: 6,
           border: "none",
           cursor: "pointer",
           transition: "all 0.3s ease",
           whiteSpace: "nowrap",
+          flexShrink: 0,
         }}
       >
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">

@@ -1,63 +1,74 @@
 "use client";
 
+import { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import HomeTab from "@/components/pages/HomeTab";
 import ProjetosTab from "@/components/pages/ProjetosTab";
 import ServicosTab from "@/components/pages/ServicosTab";
 import SobreTab from "@/components/pages/SobreTab";
 import FAQSection from "@/components/pages/FAQSection";
+import LogosStrip from "@/components/ui/LogosStrip";
+import CTAFinal from "@/components/pages/CTAFinal";
 
 export default function Home() {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+    );
+
+    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
       <Navbar />
-      <div
-        style={{
-          maxWidth: 720,
-          width: "100%",
-          marginTop: "clamp(68px, 14vw, 92px)",
-        }}
-      >
-        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-          <HomeTab />
-          <ProjetosTab />
-          <ServicosTab />
-          <SobreTab />
-          <FAQSection />
-        </div>
-      </div>
+      <HomeTab />
+      <LogosStrip />
+      <ProjetosTab />
+      <ServicosTab />
+      <SobreTab />
+      <FAQSection />
+      <CTAFinal />
+
       <footer
         style={{
           width: "100%",
-          maxWidth: 720,
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginTop: 16,
-          padding: "0 4px",
+          padding: "32px 0",
+          textAlign: "center",
+          borderTop: "1px solid var(--border)",
         }}
       >
-        <span
-          style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: 9,
-            color: "var(--muted2)",
-            textTransform: "uppercase",
-            letterSpacing: "0.08em",
-          }}
-        >
-          © 2026 · Yuri Correia · Lagoa Vermelha RS
-        </span>
-        <span
-          style={{
-            fontFamily: "var(--font-bebas)",
-            fontSize: 16,
-            letterSpacing: "0.12em",
-            color: "var(--muted2)",
-          }}
-        >
-          CORRE<span style={{ color: "var(--orange)" }}>.</span>IA
-        </span>
+        <div className="section-wrapper" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <span
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: 10,
+              color: "var(--muted2)",
+              textTransform: "uppercase",
+              letterSpacing: "0.08em",
+            }}
+          >
+            © 2026 · Yuri Correia · CORRE.IA
+          </span>
+          <span
+            style={{
+              fontFamily: "var(--font-bebas)",
+              fontSize: 18,
+              letterSpacing: "0.12em",
+              color: "var(--muted2)",
+            }}
+          >
+            CORRE<span style={{ color: "var(--orange)" }}>.</span>IA
+          </span>
+        </div>
       </footer>
     </>
   );

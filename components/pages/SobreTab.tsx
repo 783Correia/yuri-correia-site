@@ -1,41 +1,19 @@
 "use client";
 
-import Card from "@/components/ui/Card";
 import FactCard from "@/components/ui/FactCard";
 
 export default function SobreTab() {
   return (
-    <section id="sobre" style={{ scrollMarginTop: 80 }}>
-      {/* About Card */}
-      <div>
-        <Card style={{ padding: "clamp(28px, 6vw, 44px) clamp(20px, 5vw, 40px)", position: "relative" }}>
-          {/* Decorative 27 */}
-          <div
-            style={{
-              position: "absolute",
-              top: -5,
-              right: 30,
-              fontFamily: "var(--font-bebas)",
-              fontSize: "clamp(80px, 16vw, 120px)",
-              color: "transparent",
-              WebkitTextStroke: "1px rgba(255,255,255,0.04)",
-              pointerEvents: "none",
-              userSelect: "none",
-              lineHeight: 1,
-            }}
-          >
-            27
-          </div>
-
+    <section id="sobre" className="section-full" style={{ scrollMarginTop: 80 }}>
+      <div className="section-wrapper">
+        <div className="reveal" style={{ maxWidth: 720, marginBottom: "clamp(40px, 6vw, 64px)" }}>
           <h2
             style={{
               fontFamily: "var(--font-bebas)",
-              fontSize: "clamp(28px, 5vw, 48px)",
+              fontSize: "clamp(40px, 8vw, 80px)",
               letterSpacing: "0.04em",
-              lineHeight: 1.05,
-              marginBottom: "clamp(14px, 3vw, 22px)",
-              position: "relative",
-              zIndex: 1,
+              lineHeight: 1,
+              marginBottom: "clamp(16px, 3vw, 28px)",
             }}
           >
             Não fiz faculdade. Fiz{" "}
@@ -55,13 +33,10 @@ export default function SobreTab() {
           <p
             style={{
               fontFamily: "var(--font-dm)",
-              fontSize: "clamp(13px, 3vw, 14px)",
+              fontSize: "clamp(14px, 2.5vw, 17px)",
               fontWeight: 300,
               lineHeight: 1.82,
               color: "var(--muted)",
-              maxWidth: 540,
-              position: "relative",
-              zIndex: 1,
             }}
           >
             Comecei em 2021 aprendendo WordPress no YouTube. Hoje uso{" "}
@@ -74,39 +49,37 @@ export default function SobreTab() {
             </strong>
             . Atendo empresas B2B no agronegócio e na indústria que precisam de presença digital séria.
           </p>
-        </Card>
-      </div>
+        </div>
 
-      {/* Fact Grid */}
-      <div style={{ marginTop: 12 }}>
-        <div
-          className="fact-grid"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
-            gap: 12,
-          }}
-        >
-          <FactCard
-            icon="🌾"
-            title="Agro & Indústria B2B"
-            description="Especializado em segmentos tradicionais que precisam de presença digital séria e que converte de verdade."
-          />
-          <FactCard
-            icon="🧠"
-            title="Estratégia antes do código"
-            description="April Dunford framework. Posicionamento real antes de qualquer pixel. Copy que diferencia — não só descreve."
-          />
-          <FactCard
-            icon="⚡"
-            title="IA aplicada de verdade"
-            description="Claude Code, Lovable, Cursor. Entrego mais rápido e com mais precisão. Você paga pelo resultado."
-          />
-          <FactCard
-            icon="🤝"
-            title="Do briefing à entrega"
-            description="Operação solo. Você fala comigo — não com um atendente que repassa pro dev. Direto ao ponto."
-          />
+        <div className="fact-grid">
+          <div className="reveal reveal-delay-1">
+            <FactCard
+              icon="🌾"
+              title="Agro & Indústria B2B"
+              description="Especializado em segmentos tradicionais que precisam de presença digital séria e que converte de verdade."
+            />
+          </div>
+          <div className="reveal reveal-delay-2">
+            <FactCard
+              icon="🧠"
+              title="Estratégia antes do código"
+              description="April Dunford framework. Posicionamento real antes de qualquer pixel. Copy que diferencia — não só descreve."
+            />
+          </div>
+          <div className="reveal reveal-delay-3">
+            <FactCard
+              icon="⚡"
+              title="IA aplicada de verdade"
+              description="Claude Code, Lovable, Cursor. Entrego mais rápido e com mais precisão. Você paga pelo resultado."
+            />
+          </div>
+          <div className="reveal reveal-delay-4">
+            <FactCard
+              icon="🤝"
+              title="Do briefing à entrega"
+              description="Operação solo. Você fala comigo — não com um atendente que repassa pro dev. Direto ao ponto."
+            />
+          </div>
         </div>
       </div>
     </section>

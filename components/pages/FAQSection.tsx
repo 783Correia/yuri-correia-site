@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Card from "@/components/ui/Card";
 
 const faqs = [
   {
@@ -43,11 +42,7 @@ function FAQItem({
   onClick: () => void;
 }) {
   return (
-    <div
-      style={{
-        borderBottom: "1px solid var(--border)",
-      }}
-    >
+    <div style={{ borderBottom: "1px solid var(--border)" }}>
       <button
         onClick={onClick}
         style={{
@@ -55,13 +50,13 @@ function FAQItem({
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          padding: "clamp(18px, 4vw, 24px) clamp(18px, 4vw, 28px)",
+          padding: "clamp(20px, 4vw, 28px) 0",
           background: "none",
           border: "none",
           cursor: "pointer",
           color: "var(--text)",
           fontFamily: "var(--font-dm)",
-          fontSize: "clamp(13px, 3vw, 15px)",
+          fontSize: "clamp(14px, 3vw, 17px)",
           fontWeight: 500,
           textAlign: "left",
           gap: 16,
@@ -71,7 +66,7 @@ function FAQItem({
         <span
           style={{
             fontFamily: "var(--font-bebas)",
-            fontSize: 22,
+            fontSize: 24,
             color: "var(--orange)",
             flexShrink: 0,
             transition: "transform 0.25s ease",
@@ -90,9 +85,9 @@ function FAQItem({
       >
         <div
           style={{
-            padding: "0 clamp(18px, 4vw, 28px) clamp(18px, 4vw, 24px)",
+            paddingBottom: "clamp(20px, 4vw, 28px)",
             fontFamily: "var(--font-dm)",
-            fontSize: "clamp(12px, 2.8vw, 13px)",
+            fontSize: "clamp(13px, 2.5vw, 15px)",
             fontWeight: 300,
             color: "var(--muted)",
             lineHeight: 1.75,
@@ -109,46 +104,35 @@ export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq">
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: 10,
-          padding: "0 4px",
-          marginBottom: 8,
-        }}
-      >
-        <span
-          style={{
-            width: 7,
-            height: 7,
-            borderRadius: "50%",
-            background: "var(--orange)",
-            display: "inline-block",
-          }}
-        />
-        <span
-          style={{
-            fontFamily: "var(--font-bebas)",
-            fontSize: 18,
-            letterSpacing: "0.12em",
-          }}
-        >
-          Perguntas frequentes
-        </span>
+    <section id="faq" className="section-full section-alt" style={{ scrollMarginTop: 80 }}>
+      <div className="section-wrapper">
+        <div className="reveal">
+          <h2
+            style={{
+              fontFamily: "var(--font-bebas)",
+              fontSize: "clamp(40px, 8vw, 80px)",
+              letterSpacing: "0.06em",
+              lineHeight: 1,
+              marginBottom: "clamp(24px, 4vw, 48px)",
+            }}
+          >
+            PERGUNTAS{" "}
+            <span style={{ color: "var(--orange)" }}>FREQUENTES</span>
+          </h2>
+        </div>
+
+        <div className="reveal" style={{ maxWidth: 800 }}>
+          {faqs.map((faq, i) => (
+            <FAQItem
+              key={i}
+              question={faq.question}
+              answer={faq.answer}
+              isOpen={openIndex === i}
+              onClick={() => setOpenIndex(openIndex === i ? null : i)}
+            />
+          ))}
+        </div>
       </div>
-      <Card>
-        {faqs.map((faq, i) => (
-          <FAQItem
-            key={i}
-            question={faq.question}
-            answer={faq.answer}
-            isOpen={openIndex === i}
-            onClick={() => setOpenIndex(openIndex === i ? null : i)}
-          />
-        ))}
-      </Card>
     </section>
   );
 }
