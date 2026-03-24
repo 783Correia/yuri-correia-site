@@ -56,17 +56,20 @@ const projects: Project[] = [
     name: "Palazzo Giardino",
     description: "Imobiliário · Landing page de alto padrão · Captação de leads qualificados",
     pill: "Imóveis premium",
+    image: "/projects/palazzo-giardino.png",
     url: "#",
   },
   {
     name: "Paesaggio",
     description: "Paisagismo · Site institucional · Posicionamento e portfólio visual",
+    image: "/projects/paesaggio.png",
     url: "#",
   },
   {
     name: "Tarvos",
     description: "Consultoria · Site corporativo · Presença digital estratégica",
     pill: "Corporativo",
+    image: "/projects/tarvos.png",
     url: "https://tarvos.com.br/",
   },
 ];
