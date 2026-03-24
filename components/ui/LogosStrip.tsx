@@ -1,34 +1,40 @@
 "use client";
 
-import Image from "next/image";
-
 const logos = [
   { src: "/logos/torno-metal.png", alt: "Torno Metal" },
   { src: "/logos/sales-emb.png", alt: "Sales EMB" },
-  { src: "/logos/jaco-locadora.png", alt: "Jacó Locadora" },
+  { src: "/logos/jaco-locadora.png", alt: "Jaco Locadora" },
   { src: "/logos/agilizza.png", alt: "Agilizza" },
   { src: "/logos/tecnoplay.png", alt: "TecnoPlay" },
 ];
 
-function LogoGroup() {
+function LogoGroup({ keyPrefix }: { keyPrefix: string }) {
   return (
     <>
       {logos.map((logo, i) => (
-        <Image
-          key={i}
-          src={logo.src}
-          alt={logo.alt}
-          width={100}
-          height={28}
+        <div
+          key={`${keyPrefix}-${i}`}
           style={{
-            height: 28,
-            width: "auto",
+            flexShrink: 0,
             margin: "0 clamp(24px, 4vw, 48px)",
-            opacity: 0.4,
-            filter: "grayscale(1)",
-            transition: "opacity 0.3s ease",
+            display: "flex",
+            alignItems: "center",
           }}
-        />
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={logo.src}
+            alt={logo.alt}
+            style={{
+              height: 30,
+              width: "auto",
+              maxWidth: 120,
+              opacity: 0.5,
+              filter: "grayscale(1) invert(var(--logo-invert))",
+              transition: "opacity 0.3s ease",
+            }}
+          />
+        </div>
       ))}
     </>
   );
@@ -53,9 +59,9 @@ export default function LogosStrip() {
           animation: "tick 20s linear infinite",
         }}
       >
-        <LogoGroup />
-        <LogoGroup />
-        <LogoGroup />
+        <LogoGroup keyPrefix="a" />
+        <LogoGroup keyPrefix="b" />
+        <LogoGroup keyPrefix="c" />
       </div>
     </section>
   );

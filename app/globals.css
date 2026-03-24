@@ -18,7 +18,7 @@
   --green: #34D399;
   --radius: 20px;
   --nav-bg: rgba(18, 17, 16, 0.88);
-  --logo-brightness: 1;
+  --logo-invert: 1;
   --section-bg: var(--bg);
   --section-bg-alt: #0E0D0B;
 }
@@ -38,7 +38,7 @@
   --orange-b: rgba(217, 92, 26, 0.18);
   --green: #059669;
   --nav-bg: rgba(255, 255, 255, 0.88);
-  --logo-brightness: 0;
+  --logo-invert: 0;
   --section-bg: var(--bg);
   --section-bg-alt: #EDEAE7;
 }
