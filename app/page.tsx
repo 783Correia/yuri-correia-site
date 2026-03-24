@@ -7,7 +7,6 @@ import ProjetosTab from "@/components/pages/ProjetosTab";
 import ServicosTab from "@/components/pages/ServicosTab";
 import SobreTab from "@/components/pages/SobreTab";
 import FAQSection from "@/components/pages/FAQSection";
-import LogosStrip from "@/components/ui/LogosStrip";
 import CTAFinal from "@/components/pages/CTAFinal";
 
 export default function Home() {
@@ -31,7 +30,6 @@ export default function Home() {
     <>
       <Navbar />
       <HomeTab />
-      <LogosStrip />
       <ProjetosTab />
       <ServicosTab />
       <SobreTab />
