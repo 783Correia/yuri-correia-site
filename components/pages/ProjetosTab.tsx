@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 
 interface Project {
   logo?: string;
@@ -69,7 +68,6 @@ const projects: Project[] = [
     name: "Tarvos",
     description: "Consultoria · Site corporativo · Presença digital estratégica",
     pill: "Corporativo",
-    image: "/projects/tarvos.png",
     url: "https://tarvos.com.br/",
   },
 ];
@@ -106,11 +104,15 @@ function ProjectCard({ project }: { project: Project }) {
               overflow: "hidden",
             }}
           >
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src={project.image}
               alt={project.name}
-              fill
               style={{
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
                 objectFit: "cover",
                 objectPosition: "top",
                 transition: "transform 0.4s ease",
@@ -170,7 +172,8 @@ function ProjectCard({ project }: { project: Project }) {
                   flexShrink: 0,
                 }}
               >
-                <Image src={project.logo} alt={project.name} fill style={{ objectFit: "contain" }} />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={project.logo} alt={project.name} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain" }} />
               </div>
             )}
             {!project.logo && (
