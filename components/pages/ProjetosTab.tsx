@@ -31,7 +31,7 @@ const projects: Project[] = [
   },
   {
     logo: "/logos/jaco-locadora.png",
-    name: "Jacó Locadora",
+    name: "Jaco Locadora",
     description: "Industrial · Plataformas elevatórias · Anti-click fraud Cloudflare",
     pill: "1º lugar no Google em 24h",
     image: "/projects/jaco-locadora.png",
