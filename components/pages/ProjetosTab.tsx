@@ -68,6 +68,7 @@ const projects: Project[] = [
     name: "Tarvos",
     description: "Consultoria · Site corporativo · Presença digital estratégica",
     pill: "Corporativo",
+    image: "/projects/tarvos.png",
     url: "https://tarvos.com.br/",
   },
 ];
