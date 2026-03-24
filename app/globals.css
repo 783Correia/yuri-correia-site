@@ -129,6 +129,23 @@ body {
   gap: 12px;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+/* Packages grid */
+.packages-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 680px) {
+  .packages-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 480px) {
   .stats-grid {
     grid-template-columns: repeat(3, 1fr);

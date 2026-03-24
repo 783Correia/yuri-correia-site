@@ -4,23 +4,15 @@ import { useState } from "react";
 import Image from "next/image";
 
 interface Project {
-  logo: string;
+  logo?: string;
   name: string;
   description: string;
   pill?: string;
-  image: string;
+  image?: string;
   url: string;
 }
 
 const projects: Project[] = [
-  {
-    logo: "/logos/torno-metal.png",
-    name: "Torno Metal Everton Lopes",
-    description: "Agro · B2B · Landing page + Posicionamento para revendedores",
-    pill: "↗ Receita comprovada",
-    image: "/projects/torno-metal.png",
-    url: "https://tornometalevertonlopes.com.br/",
-  },
   {
     logo: "/logos/sales-emb.png",
     name: "Sales EMB",
@@ -28,6 +20,14 @@ const projects: Project[] = [
     pill: "↗ +370% receita",
     image: "/projects/sales-emb.png",
     url: "https://salesemb.com.br/",
+  },
+  {
+    logo: "/logos/torno-metal.png",
+    name: "Torno Metal Everton Lopes",
+    description: "Agro · B2B · Landing page + Posicionamento para revendedores",
+    pill: "↗ Receita comprovada",
+    image: "/projects/torno-metal.png",
+    url: "https://tornometalevertonlopes.com.br/",
   },
   {
     logo: "/logos/jaco-locadora.png",
@@ -47,9 +47,27 @@ const projects: Project[] = [
   {
     logo: "/logos/tecnoplay.png",
     name: "TecnoPlay",
-    description: "E-commerce · Produto digital · Tecnologia",
+    description: "E-commerce · Produto digital · R$16k faturados na plataforma",
+    pill: "R$16k e-commerce",
     image: "/projects/tecnoplay.png",
     url: "https://tecnoplay.app.br/",
+  },
+  {
+    name: "Palazzo Giardino",
+    description: "Imobiliário · Landing page de alto padrão · Captação de leads qualificados",
+    pill: "Imóveis premium",
+    url: "#",
+  },
+  {
+    name: "Paesaggio",
+    description: "Paisagismo · Site institucional · Posicionamento e portfólio visual",
+    url: "#",
+  },
+  {
+    name: "Tarvos",
+    description: "Consultoria · Site corporativo · Presença digital estratégica",
+    pill: "Corporativo",
+    url: "https://tarvos.com.br/",
   },
 ];
 
@@ -59,8 +77,8 @@ function ProjectCard({ project }: { project: Project }) {
   return (
     <a
       href={project.url}
-      target="_blank"
-      rel="noopener noreferrer"
+      target={project.url !== "#" ? "_blank" : undefined}
+      rel={project.url !== "#" ? "noopener noreferrer" : undefined}
       style={{ textDecoration: "none", color: "inherit" }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -76,38 +94,40 @@ function ProjectCard({ project }: { project: Project }) {
         }}
       >
         {/* Hero Image */}
-        <div
-          style={{
-            position: "relative",
-            width: "100%",
-            height: "clamp(160px, 30vw, 200px)",
-            overflow: "hidden",
-          }}
-        >
-          <Image
-            src={project.image}
-            alt={project.name}
-            fill
-            style={{
-              objectFit: "cover",
-              objectPosition: "top",
-              transition: "transform 0.4s ease",
-              transform: hovered ? "scale(1.03)" : "scale(1)",
-            }}
-          />
+        {project.image && (
           <div
             style={{
-              position: "absolute",
-              inset: 0,
-              background:
-                "linear-gradient(to top, var(--s1) 0%, transparent 40%)",
-              pointerEvents: "none",
+              position: "relative",
+              width: "100%",
+              height: "clamp(160px, 30vw, 200px)",
+              overflow: "hidden",
             }}
-          />
-        </div>
+          >
+            <Image
+              src={project.image}
+              alt={project.name}
+              fill
+              style={{
+                objectFit: "cover",
+                objectPosition: "top",
+                transition: "transform 0.4s ease",
+                transform: hovered ? "scale(1.03)" : "scale(1)",
+              }}
+            />
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                background:
+                  "linear-gradient(to top, var(--s1) 0%, transparent 40%)",
+                pointerEvents: "none",
+              }}
+            />
+          </div>
+        )}
 
         {/* Info */}
-        <div style={{ padding: "16px 24px 22px" }}>
+        <div style={{ padding: project.image ? "16px 24px 22px" : "24px 24px 22px" }}>
           <div
             style={{
               display: "flex",
@@ -116,23 +136,45 @@ function ProjectCard({ project }: { project: Project }) {
               marginBottom: 6,
             }}
           >
-            <div
-              style={{
-                width: 28,
-                height: 28,
-                borderRadius: 6,
-                overflow: "hidden",
-                position: "relative",
-                flexShrink: 0,
-              }}
-            >
-              <Image
-                src={project.logo}
-                alt={project.name}
-                fill
-                style={{ objectFit: "contain" }}
-              />
-            </div>
+            {project.logo && (
+              <div
+                style={{
+                  width: 28,
+                  height: 28,
+                  borderRadius: 6,
+                  overflow: "hidden",
+                  position: "relative",
+                  flexShrink: 0,
+                }}
+              >
+                <Image
+                  src={project.logo}
+                  alt={project.name}
+                  fill
+                  style={{ objectFit: "contain" }}
+                />
+              </div>
+            )}
+            {!project.logo && (
+              <div
+                style={{
+                  width: 28,
+                  height: 28,
+                  borderRadius: 6,
+                  background: "var(--s3)",
+                  border: "1px solid var(--border)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexShrink: 0,
+                  fontFamily: "var(--font-bebas)",
+                  fontSize: 14,
+                  color: "var(--orange)",
+                }}
+              >
+                {project.name.charAt(0)}
+              </div>
+            )}
             <span
               style={{
                 fontFamily: "var(--font-dm)",
@@ -189,7 +231,7 @@ function ProjectCard({ project }: { project: Project }) {
 
 export default function ProjetosTab() {
   return (
-    <>
+    <section id="cases" style={{ scrollMarginTop: 80 }}>
       <div className="stagger-child">
         <div
           style={{
@@ -217,7 +259,7 @@ export default function ProjetosTab() {
                 letterSpacing: "0.12em",
               }}
             >
-              Projetos selecionados
+              Cases com resultado
             </span>
           </div>
           <span
@@ -233,10 +275,10 @@ export default function ProjetosTab() {
       </div>
 
       {projects.map((project) => (
-        <div key={project.name} className="stagger-child">
+        <div key={project.name} style={{ marginTop: 12 }}>
           <ProjectCard project={project} />
         </div>
       ))}
-    </>
+    </section>
   );
 }

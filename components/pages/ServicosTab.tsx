@@ -86,11 +86,205 @@ function ServiceItem({
   );
 }
 
+const packages = [
+  {
+    name: "Landing Page",
+    price: "R$ 1.200",
+    description: "Página única de conversão com copy estratégica, design responsivo e otimização para leads.",
+    features: ["1 página de alta conversão", "Copy persuasiva", "Mobile-first", "Entrega em 5-7 dias"],
+    highlight: false,
+  },
+  {
+    name: "Site Institucional",
+    price: "R$ 2.500",
+    description: "Presença digital completa para empresas B2B. Múltiplas páginas, SEO e posicionamento.",
+    features: ["Até 5 páginas", "SEO otimizado", "Posicionamento estratégico", "Entrega em 10-15 dias"],
+    highlight: true,
+  },
+  {
+    name: "E-commerce",
+    price: "R$ 4.500",
+    description: "Loja virtual completa com catálogo, carrinho e integração com meios de pagamento.",
+    features: ["Catálogo de produtos", "Checkout integrado", "Painel administrativo", "Entrega em 20-30 dias"],
+    highlight: false,
+  },
+];
+
+function PackageCard({
+  pkg,
+}: {
+  pkg: (typeof packages)[0];
+}) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        background: "var(--s1)",
+        border: `1px solid ${pkg.highlight ? "var(--orange-b)" : hovered ? "var(--border-h)" : "var(--border)"}`,
+        borderRadius: "var(--radius)",
+        padding: "clamp(24px, 5vw, 32px)",
+        position: "relative",
+        overflow: "hidden",
+        transition: "all 0.25s ease",
+        transform: hovered ? "translateY(-3px)" : "translateY(0)",
+        display: "flex",
+        flexDirection: "column" as const,
+      }}
+    >
+      {pkg.highlight && (
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            height: 2,
+            background: "var(--orange)",
+          }}
+        />
+      )}
+      {pkg.highlight && (
+        <span
+          style={{
+            fontFamily: "var(--font-mono)",
+            fontSize: 8,
+            background: "var(--orange-s)",
+            border: "1px solid var(--orange-b)",
+            borderRadius: 100,
+            padding: "3px 8px",
+            color: "var(--orange)",
+            alignSelf: "flex-start",
+            marginBottom: 12,
+            textTransform: "uppercase",
+            letterSpacing: "0.1em",
+          }}
+        >
+          Mais popular
+        </span>
+      )}
+      <div
+        style={{
+          fontFamily: "var(--font-bebas)",
+          fontSize: 20,
+          letterSpacing: "0.08em",
+          color: "var(--text)",
+          marginBottom: 4,
+        }}
+      >
+        {pkg.name}
+      </div>
+      <div
+        style={{
+          fontFamily: "var(--font-bebas)",
+          fontSize: "clamp(36px, 8vw, 48px)",
+          lineHeight: 1,
+          color: "var(--text)",
+          marginBottom: 12,
+        }}
+      >
+        {pkg.price}
+        <span
+          style={{
+            fontFamily: "var(--font-mono)",
+            fontSize: 10,
+            color: "var(--muted)",
+            marginLeft: 4,
+          }}
+        >
+          a partir
+        </span>
+      </div>
+      <div
+        style={{
+          fontFamily: "var(--font-dm)",
+          fontSize: "clamp(11px, 2.5vw, 12px)",
+          fontWeight: 300,
+          color: "var(--muted)",
+          lineHeight: 1.65,
+          marginBottom: 16,
+        }}
+      >
+        {pkg.description}
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 20 }}>
+        {pkg.features.map((f) => (
+          <div
+            key={f}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+              fontFamily: "var(--font-mono)",
+              fontSize: "clamp(9px, 2vw, 10px)",
+              color: "var(--muted)",
+            }}
+          >
+            <span style={{ color: "var(--orange)", fontSize: 12 }}>✓</span>
+            {f}
+          </div>
+        ))}
+      </div>
+      <a
+        href="https://wa.me/5554999003163"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          marginTop: "auto",
+          background: pkg.highlight ? "var(--orange)" : "var(--s3)",
+          color: pkg.highlight ? "#fff" : "var(--text)",
+          borderRadius: 100,
+          padding: "10px 20px",
+          fontFamily: "var(--font-dm)",
+          fontSize: 12,
+          fontWeight: 500,
+          textDecoration: "none",
+          textAlign: "center" as const,
+          border: "none",
+          transition: "all 0.2s ease",
+        }}
+      >
+        Quero esse
+      </a>
+    </div>
+  );
+}
+
 export default function ServicosTab() {
   return (
-    <>
+    <section id="servicos" style={{ scrollMarginTop: 80 }}>
       {/* Services Card */}
-      <div className="stagger-child">
+      <div>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 10,
+            padding: "0 4px",
+            marginBottom: 8,
+          }}
+        >
+          <span
+            style={{
+              width: 7,
+              height: 7,
+              borderRadius: "50%",
+              background: "var(--orange)",
+              display: "inline-block",
+            }}
+          />
+          <span
+            style={{
+              fontFamily: "var(--font-bebas)",
+              fontSize: 18,
+              letterSpacing: "0.12em",
+            }}
+          >
+            O que eu faço
+          </span>
+        </div>
         <Card>
           <ServiceItem
             number="01"
@@ -114,8 +308,55 @@ export default function ServicosTab() {
         </Card>
       </div>
 
+      {/* Pricing Packages */}
+      <div style={{ marginTop: 24 }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 10,
+            padding: "0 4px",
+            marginBottom: 8,
+          }}
+        >
+          <span
+            style={{
+              width: 7,
+              height: 7,
+              borderRadius: "50%",
+              background: "var(--orange)",
+              display: "inline-block",
+            }}
+          />
+          <span
+            style={{
+              fontFamily: "var(--font-bebas)",
+              fontSize: 18,
+              letterSpacing: "0.12em",
+            }}
+          >
+            Pacotes
+          </span>
+          <span
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: 9,
+              color: "var(--muted2)",
+              marginLeft: "auto",
+            }}
+          >
+            valores iniciais
+          </span>
+        </div>
+        <div className="packages-grid">
+          {packages.map((pkg) => (
+            <PackageCard key={pkg.name} pkg={pkg} />
+          ))}
+        </div>
+      </div>
+
       {/* CTA Card */}
-      <div className="stagger-child">
+      <div style={{ marginTop: 12 }}>
         <Card
           style={{
             padding: "clamp(32px, 7vw, 52px) clamp(20px, 5vw, 40px)",
@@ -239,6 +480,6 @@ export default function ServicosTab() {
           </div>
         </Card>
       </div>
-    </>
+    </section>
   );
 }

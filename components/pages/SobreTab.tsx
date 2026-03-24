@@ -5,9 +5,9 @@ import FactCard from "@/components/ui/FactCard";
 
 export default function SobreTab() {
   return (
-    <>
+    <section id="sobre" style={{ scrollMarginTop: 80 }}>
       {/* About Card */}
-      <div className="stagger-child">
+      <div>
         <Card style={{ padding: "clamp(28px, 6vw, 44px) clamp(20px, 5vw, 40px)", position: "relative" }}>
           {/* Decorative 27 */}
           <div
@@ -30,10 +30,10 @@ export default function SobreTab() {
           <h2
             style={{
               fontFamily: "var(--font-bebas)",
-              fontSize: "clamp(32px, 6vw, 64px)",
+              fontSize: "clamp(28px, 5vw, 48px)",
               letterSpacing: "0.04em",
               lineHeight: 1.05,
-              marginBottom: "clamp(18px, 4vw, 28px)",
+              marginBottom: "clamp(14px, 3vw, 22px)",
               position: "relative",
               zIndex: 1,
             }}
@@ -52,119 +52,33 @@ export default function SobreTab() {
             </em>
           </h2>
 
-          <div
+          <p
             style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 16,
+              fontFamily: "var(--font-dm)",
+              fontSize: "clamp(13px, 3vw, 14px)",
+              fontWeight: 300,
+              lineHeight: 1.82,
+              color: "var(--muted)",
               maxWidth: 540,
               position: "relative",
               zIndex: 1,
             }}
           >
-            <p
-              style={{
-                fontFamily: "var(--font-dm)",
-                fontSize: "clamp(13px, 3vw, 14px)",
-                fontWeight: 300,
-                lineHeight: 1.82,
-                color: "var(--muted)",
-              }}
-            >
-              Comecei em 2021 aprendendo WordPress no YouTube. Hoje uso{" "}
-              <strong style={{ color: "var(--text)" }}>
-                IA, Next.js e Tailwind
-              </strong>{" "}
-              pra entregar em dias o que antes levava meses — sem perder
-              qualidade, sem cobrar a mais por isso.
-            </p>
-            <p
-              style={{
-                fontFamily: "var(--font-dm)",
-                fontSize: "clamp(13px, 3vw, 14px)",
-                fontWeight: 300,
-                lineHeight: 1.82,
-                color: "var(--muted)",
-              }}
-            >
-              Meu diferencial não é a ferramenta. É como{" "}
-              <strong style={{ color: "var(--text)" }}>
-                penso o problema antes de abrir o editor
-              </strong>
-              . A maioria dos devs entrega site bonito. Eu entrego{" "}
-              <strong style={{ color: "var(--text)" }}>
-                argumento visual que convence
-              </strong>
-              .
-            </p>
-            <p
-              style={{
-                fontFamily: "var(--font-dm)",
-                fontSize: "clamp(13px, 3vw, 14px)",
-                fontWeight: 300,
-                lineHeight: 1.82,
-                color: "var(--muted)",
-              }}
-            >
-              Atendo empresas B2B no agronegócio e na indústria que precisam de
-              presença digital séria — não de portfólio de agência.
-            </p>
-          </div>
-
-          {/* Buttons */}
-          <div
-            style={{
-              display: "flex",
-              gap: 10,
-              marginTop: "clamp(24px, 5vw, 32px)",
-              position: "relative",
-              zIndex: 1,
-              flexWrap: "wrap",
-            }}
-          >
-            <a
-              href="https://wa.me/5554999003163"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                background: "var(--orange)",
-                color: "#fff",
-                borderRadius: 100,
-                padding: "11px 22px",
-                fontFamily: "var(--font-dm)",
-                fontSize: 13,
-                fontWeight: 500,
-                textDecoration: "none",
-                border: "none",
-                transition: "background 0.2s ease",
-              }}
-            >
-              Falar comigo
-            </a>
-            <a
-              href="https://instagram.com/ocorreiadm"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                background: "transparent",
-                color: "var(--muted)",
-                borderRadius: 100,
-                padding: "11px 22px",
-                fontFamily: "var(--font-dm)",
-                fontSize: 13,
-                fontWeight: 500,
-                textDecoration: "none",
-                border: "1px solid var(--border)",
-              }}
-            >
-              @ocorreiadm
-            </a>
-          </div>
+            Comecei em 2021 aprendendo WordPress no YouTube. Hoje uso{" "}
+            <strong style={{ color: "var(--text)" }}>
+              IA, Next.js e Tailwind
+            </strong>{" "}
+            pra entregar em dias o que antes levava meses. Meu diferencial não é a ferramenta — é como{" "}
+            <strong style={{ color: "var(--text)" }}>
+              penso o problema antes de abrir o editor
+            </strong>
+            . Atendo empresas B2B no agronegócio e na indústria que precisam de presença digital séria.
+          </p>
         </Card>
       </div>
 
       {/* Fact Grid */}
-      <div className="stagger-child">
+      <div style={{ marginTop: 12 }}>
         <div
           className="fact-grid"
           style={{
@@ -195,6 +109,6 @@ export default function SobreTab() {
           />
         </div>
       </div>
-    </>
+    </section>
   );
 }

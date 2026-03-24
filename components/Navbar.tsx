@@ -2,14 +2,9 @@
 
 import { useState, useEffect } from "react";
 
-type Tab = "inicio" | "sobre" | "projetos" | "servicos";
+type Section = "inicio" | "cases" | "servicos" | "sobre";
 
-interface NavbarProps {
-  activeTab: Tab;
-  setActiveTab: (tab: Tab) => void;
-}
-
-const tabs: { id: Tab; label: string; icon: React.ReactNode }[] = [
+const sections: { id: Section; label: string; icon: React.ReactNode }[] = [
   {
     id: "inicio",
     label: "Início",
@@ -21,18 +16,8 @@ const tabs: { id: Tab; label: string; icon: React.ReactNode }[] = [
     ),
   },
   {
-    id: "sobre",
-    label: "Sobre",
-    icon: (
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="8" r="4" />
-        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
-      </svg>
-    ),
-  },
-  {
-    id: "projetos",
-    label: "Projetos",
+    id: "cases",
+    label: "Cases",
     icon: (
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
         <rect x="2" y="3" width="20" height="14" rx="2" />
@@ -49,10 +34,21 @@ const tabs: { id: Tab; label: string; icon: React.ReactNode }[] = [
       </svg>
     ),
   },
+  {
+    id: "sobre",
+    label: "Sobre",
+    icon: (
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="8" r="4" />
+        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+      </svg>
+    ),
+  },
 ];
 
-export default function Navbar({ activeTab, setActiveTab }: NavbarProps) {
-  const [hoveredTab, setHoveredTab] = useState<Tab | null>(null);
+export default function Navbar() {
+  const [hoveredSection, setHoveredSection] = useState<Section | null>(null);
+  const [activeSection, setActiveSection] = useState<Section>("inicio");
   const [theme, setTheme] = useState<"dark" | "light">("dark");
   const [themeHovered, setThemeHovered] = useState(false);
 
@@ -63,6 +59,33 @@ export default function Navbar({ activeTab, setActiveTab }: NavbarProps) {
       document.documentElement.setAttribute("data-theme", saved);
     }
   }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const offsets = sections.map((s) => {
+        const el = document.getElementById(s.id);
+        return el ? el.offsetTop - 120 : 0;
+      });
+      const scrollY = window.scrollY;
+      let current: Section = "inicio";
+      for (let i = offsets.length - 1; i >= 0; i--) {
+        if (scrollY >= offsets[i]) {
+          current = sections[i].id;
+          break;
+        }
+      }
+      setActiveSection(current);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollTo = (id: Section) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
 
   const toggleTheme = () => {
     const next = theme === "dark" ? "light" : "dark";
@@ -92,15 +115,15 @@ export default function Navbar({ activeTab, setActiveTab }: NavbarProps) {
         maxWidth: "calc(100vw - 16px)",
       }}
     >
-      {tabs.map((tab) => (
+      {sections.map((section) => (
         <div
-          key={tab.id}
+          key={section.id}
           style={{ position: "relative" }}
-          onMouseEnter={() => setHoveredTab(tab.id)}
-          onMouseLeave={() => setHoveredTab(null)}
+          onMouseEnter={() => setHoveredSection(section.id)}
+          onMouseLeave={() => setHoveredSection(null)}
         >
           <button
-            onClick={() => setActiveTab(tab.id)}
+            onClick={() => scrollTo(section.id)}
             style={{
               width: 38,
               height: 38,
@@ -111,19 +134,19 @@ export default function Navbar({ activeTab, setActiveTab }: NavbarProps) {
               alignItems: "center",
               justifyContent: "center",
               color:
-                activeTab === tab.id || hoveredTab === tab.id
+                activeSection === section.id || hoveredSection === section.id
                   ? "var(--text)"
                   : "var(--muted)",
               background:
-                activeTab === tab.id || hoveredTab === tab.id
+                activeSection === section.id || hoveredSection === section.id
                   ? "var(--s3)"
                   : "transparent",
               transition: "all 0.2s ease",
             }}
           >
-            {tab.icon}
+            {section.icon}
           </button>
-          {hoveredTab === tab.id && (
+          {hoveredSection === section.id && (
             <span
               style={{
                 position: "absolute",
@@ -141,7 +164,7 @@ export default function Navbar({ activeTab, setActiveTab }: NavbarProps) {
                 pointerEvents: "none",
               }}
             >
-              {tab.label}
+              {section.label}
             </span>
           )}
         </div>

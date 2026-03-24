@@ -3,18 +3,11 @@
 import Image from "next/image";
 import Card from "@/components/ui/Card";
 import StatCard from "@/components/ui/StatCard";
-import ProjectRow from "@/components/ui/ProjectRow";
 import Ticker from "@/components/ui/Ticker";
 
-type Tab = "inicio" | "sobre" | "projetos" | "servicos";
-
-interface HomeTabProps {
-  setActiveTab: (tab: Tab) => void;
-}
-
-export default function HomeTab({ setActiveTab }: HomeTabProps) {
+export default function HomeTab() {
   return (
-    <>
+    <section id="inicio">
       {/* Hero Card */}
       <div className="stagger-child">
         <Card
@@ -159,7 +152,8 @@ export default function HomeTab({ setActiveTab }: HomeTabProps) {
                   margin: 0,
                 }}
               >
-                Yuri Correia
+                Seu próximo site vai{" "}
+                <span style={{ color: "var(--orange)" }}>vender</span> por você
               </h1>
               <div
                 style={{
@@ -338,7 +332,7 @@ export default function HomeTab({ setActiveTab }: HomeTabProps) {
       </div>
 
       {/* Stats Bento */}
-      <div className="stagger-child">
+      <div className="stagger-child" style={{ marginTop: 12 }}>
         <div className="stats-grid">
           <StatCard value="5" symbol="+" label="Anos ativo" />
           <StatCard value="20" symbol="+" label="Projetos" />
@@ -347,84 +341,9 @@ export default function HomeTab({ setActiveTab }: HomeTabProps) {
       </div>
 
       {/* Ticker */}
-      <div className="stagger-child">
+      <div className="stagger-child" style={{ marginTop: 12 }}>
         <Ticker />
       </div>
-
-      {/* Projetos Preview */}
-      <div className="stagger-child">
-        <Card>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              padding: "18px 20px 0",
-            }}
-          >
-            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-              <span
-                style={{
-                  width: 7,
-                  height: 7,
-                  borderRadius: "50%",
-                  background: "var(--orange)",
-                  display: "inline-block",
-                }}
-              />
-              <span
-                style={{
-                  fontFamily: "var(--font-bebas)",
-                  fontSize: 18,
-                  letterSpacing: "0.12em",
-                }}
-              >
-                Projetos
-              </span>
-            </div>
-            <button
-              onClick={() => setActiveTab("projetos")}
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: 10,
-                color: "var(--muted)",
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-                padding: 0,
-              }}
-            >
-              Ver todos →
-            </button>
-          </div>
-          <div style={{ marginTop: 12 }}>
-            <ProjectRow
-              logo="/logos/torno-metal.png"
-              name="Torno Metal Everton Lopes"
-              pill="↗ Receita"
-              href="https://tornometalevertonlopes.com.br/"
-            />
-            <ProjectRow
-              logo="/logos/sales-emb.png"
-              name="Sales EMB"
-              pill="↗ +370% receita"
-              href="https://salesemb.com.br/"
-            />
-            <ProjectRow
-              logo="/logos/jaco-locadora.png"
-              name="Jacó Locadora"
-              pill="Anti-fraud"
-              href="https://www.jacolocadora.com.br/"
-            />
-            <ProjectRow
-              logo="/logos/agilizza.png"
-              name="Agilizza Soluções"
-              href="https://agilizzasolucoes.com.br/"
-              isLast
-            />
-          </div>
-        </Card>
-      </div>
-    </>
+    </section>
   );
 }
