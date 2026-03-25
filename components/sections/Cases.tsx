@@ -28,7 +28,7 @@ const cases: CaseProject[] = [
     url: "https://tornometalevertonlopes.com.br/",
   },
   {
-    name: "Jacó Locadora",
+    name: "Jaco Locadora",
     segmento: "Industrial · Plataformas elevatórias",
     resultado: "1º lugar no Google em menos de 24h",
     image: "/projects/jaco-locadora.png",
