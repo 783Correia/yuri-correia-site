@@ -9,9 +9,24 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://yuri-correia-site.vercel.app"),
   title: "Yuri Correia — Estrutura digital que gera resultado real",
   description:
     "Há 5 anos construo estruturas digitais que geram resultado real pra empresas B2B. Sites, landing pages e estratégia digital.",
+  openGraph: {
+    title: "Yuri Correia — Estrutura digital que gera resultado real",
+    description:
+      "A experiência do usuário define quem fecha com você. Há 5 anos construo estruturas digitais que geram resultado real pra empresas B2B.",
+    type: "website",
+    locale: "pt_BR",
+    siteName: "Yuri Correia",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Yuri Correia — Estrutura digital que gera resultado real",
+    description:
+      "A experiência do usuário define quem fecha com você. Estruturas digitais que geram resultado real pra empresas B2B.",
+  },
 };
 
 export default function RootLayout({
