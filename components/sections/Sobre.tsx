@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import AnimatedSection from "@/components/AnimatedSection";
 
 export default function Sobre() {
@@ -90,23 +91,24 @@ export default function Sobre() {
             </AnimatedSection>
           </div>
 
-          {/* Placeholder image */}
+          {/* Photo */}
           <AnimatedSection delay={0.2} style={{ flex: "0 0 auto", width: "clamp(280px, 30vw, 400px)" }}>
             <div
               style={{
                 width: "100%",
                 aspectRatio: "3/4",
-                background: "#1a1a1a",
                 borderRadius: 16,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "#333333",
-                fontSize: 14,
-                fontWeight: 300,
+                overflow: "hidden",
+                position: "relative",
               }}
             >
-              [ imagem ]
+              <Image
+                src="/yuri.png"
+                alt="Yuri Correia"
+                fill
+                style={{ objectFit: "cover" }}
+                sizes="(max-width: 768px) 280px, 400px"
+              />
             </div>
           </AnimatedSection>
         </div>

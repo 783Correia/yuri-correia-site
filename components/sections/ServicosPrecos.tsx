@@ -4,21 +4,19 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import AnimatedSection from "@/components/AnimatedSection";
 
-interface PricingCard {
+interface ServiceCard {
   title: string;
   subtitle: string;
-  price: string;
   features: string[];
   buttonLabel: string;
   whatsappMsg: string;
   featured?: boolean;
 }
 
-const cards: PricingCard[] = [
+const cards: ServiceCard[] = [
   {
     title: "Norte Digital",
     subtitle: "O diagnóstico que vem antes de qualquer investimento.",
-    price: "R$497",
     features: [
       "1 call até 2h",
       "Diagnóstico completo",
@@ -30,7 +28,6 @@ const cards: PricingCard[] = [
   {
     title: "Site ou Landing Page",
     subtitle: "Estrutura digital B2B construída pra converter.",
-    price: "A partir de R$4.500",
     features: ["Posicionamento", "Design e copy", "Performance e SEO"],
     buttonLabel: "Quero um orçamento",
     whatsappMsg: "Olá Yuri, quero um orçamento de site/LP",
@@ -39,7 +36,6 @@ const cards: PricingCard[] = [
   {
     title: "Projeto Completo",
     subtitle: "Site + LPs + estratégia. Do zero ao ar.",
-    price: "A partir de R$8.000",
     features: [
       "Diagnóstico inicial",
       "Execução completa",
@@ -50,11 +46,11 @@ const cards: PricingCard[] = [
   },
 ];
 
-function PricingCardComponent({
+function ServiceCardComponent({
   card,
   index,
 }: {
-  card: PricingCard;
+  card: ServiceCard;
   index: number;
 }) {
   const [hovered, setHovered] = useState(false);
@@ -96,21 +92,11 @@ function PricingCardComponent({
           color: "#666666",
           fontWeight: 300,
           lineHeight: 1.5,
-          marginBottom: 24,
+          marginBottom: 32,
         }}
       >
         {card.subtitle}
       </p>
-      <div
-        style={{
-          fontSize: "clamp(28px, 4vw, 36px)",
-          fontWeight: 600,
-          letterSpacing: "-0.03em",
-          marginBottom: 32,
-        }}
-      >
-        {card.price}
-      </div>
 
       <div
         style={{
@@ -205,7 +191,7 @@ export default function ServicosPrecos() {
           }}
         >
           {cards.map((card, i) => (
-            <PricingCardComponent key={card.title} card={card} index={i} />
+            <ServiceCardComponent key={card.title} card={card} index={i} />
           ))}
         </div>
       </div>

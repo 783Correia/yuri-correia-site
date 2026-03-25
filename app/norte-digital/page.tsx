@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -503,17 +504,18 @@ export default function NorteDigitalPage() {
                 style={{
                   width: "100%",
                   aspectRatio: "3/4",
-                  background: "#1a1a1a",
                   borderRadius: 16,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "#333333",
-                  fontSize: 14,
-                  fontWeight: 300,
+                  overflow: "hidden",
+                  position: "relative",
                 }}
               >
-                [ imagem ]
+                <Image
+                  src="/yuri.png"
+                  alt="Yuri Correia"
+                  fill
+                  style={{ objectFit: "cover" }}
+                  sizes="(max-width: 768px) 280px, 400px"
+                />
               </div>
             </AnimatedSection>
           </div>
