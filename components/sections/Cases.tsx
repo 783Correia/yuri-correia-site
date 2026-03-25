@@ -37,7 +37,7 @@ const cases: CaseProject[] = [
   {
     name: "Dieison Corazza",
     segmento: "Imóveis · Alto padrão",
-    resultado: "LP de captação de leads para imóveis premium",
+    resultado: "LP de vendas de imóvel premium exclusivo",
     image: "/projects/palazzo-giardino.png",
     url: "https://palazzo-giardino-private.vercel.app/",
   },
@@ -51,7 +51,7 @@ const cases: CaseProject[] = [
   {
     name: "Agilizza Soluções",
     segmento: "B2B · Serviços técnicos",
-    resultado: "Site institucional · Identidade digital do zero",
+    resultado: "Site para atrair e converter clientes locais",
     image: "/projects/agilizza.png",
     url: "https://agilizzasolucoes.com.br/",
   },
