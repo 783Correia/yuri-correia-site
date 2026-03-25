@@ -9,6 +9,7 @@ interface CaseProject {
   segmento: string;
   resultado: string;
   image: string;
+  url: string;
 }
 
 const cases: CaseProject[] = [
@@ -17,30 +18,63 @@ const cases: CaseProject[] = [
     segmento: "B2B · Embalagens",
     resultado: "De R$35k pra R$165k de faturamento mensal",
     image: "/projects/sales-emb.png",
+    url: "https://salesemb.com.br/",
   },
   {
     name: "Torno Metal Everton Lopes",
     segmento: "Agro · Indústria · B2B",
     resultado: "70 leads qualificados por mês a R$8,34 cada",
     image: "/projects/torno-metal.png",
+    url: "https://tornometalevertonlopes.com.br/",
   },
   {
     name: "Jacó Locadora",
     segmento: "Industrial · Plataformas elevatórias",
     resultado: "1º lugar no Google em menos de 24h",
     image: "/projects/jaco-locadora.png",
+    url: "https://www.jacolocadora.com.br/",
   },
   {
     name: "Dieison Corazza",
     segmento: "Imóveis · Alto padrão",
     resultado: "LP de captação de leads para imóveis premium",
     image: "/projects/palazzo-giardino.png",
+    url: "https://palazzo-giardino-private.vercel.app/",
   },
   {
     name: "Mateus Pelizzaro",
     segmento: "Saúde · Oftalmologia",
     resultado: "Site institucional + 3 LPs por indicação direta de cliente",
     image: "/projects/agilizza.png",
+    url: "#",
+  },
+  {
+    name: "Agilizza Soluções",
+    segmento: "B2B · Serviços técnicos",
+    resultado: "Site institucional · Identidade digital do zero",
+    image: "/projects/agilizza.png",
+    url: "https://agilizzasolucoes.com.br/",
+  },
+  {
+    name: "TecnoPlay",
+    segmento: "E-commerce · Produto digital",
+    resultado: "R$16k faturados na plataforma · R$5k renda mensal passiva",
+    image: "/projects/tecnoplay.png",
+    url: "https://tecnoplay.app.br/",
+  },
+  {
+    name: "Paesaggio",
+    segmento: "Paisagismo · Institucional",
+    resultado: "Site institucional · Posicionamento e portfólio visual",
+    image: "/projects/paesaggio.png",
+    url: "https://paesaggio-residencial.vercel.app/",
+  },
+  {
+    name: "Tarvos",
+    segmento: "Consultoria · Corporativo",
+    resultado: "Site corporativo · Presença digital estratégica",
+    image: "/projects/tarvos.png",
+    url: "https://tarvos-brand-identity.vercel.app/",
   },
 ];
 
@@ -48,14 +82,20 @@ function CaseCard({ project, index }: { project: CaseProject; index: number }) {
   const [hovered, setHovered] = useState(false);
 
   return (
-    <motion.div
+    <motion.a
+      href={project.url}
+      target={project.url !== "#" ? "_blank" : undefined}
+      rel={project.url !== "#" ? "noopener noreferrer" : undefined}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      transition={{ duration: 0.5, delay: index * 0.08 }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
+        display: "block",
+        textDecoration: "none",
+        color: "inherit",
         background: "#111111",
         border: `1px solid ${hovered ? "rgba(255,255,255,0.12)" : "rgba(255,255,255,0.06)"}`,
         borderRadius: 16,
@@ -97,15 +137,22 @@ function CaseCard({ project, index }: { project: CaseProject; index: number }) {
       </div>
 
       <div style={{ padding: 24 }}>
-        <h3
-          style={{
-            fontSize: 18,
-            fontWeight: 500,
-            marginBottom: 6,
-          }}
-        >
-          {project.name}
-        </h3>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 6 }}>
+          <h3 style={{ fontSize: 18, fontWeight: 500 }}>
+            {project.name}
+          </h3>
+          <span
+            style={{
+              fontSize: 16,
+              color: "#444",
+              transition: "all 0.2s",
+              transform: hovered ? "translate(3px, -3px)" : "none",
+              ...(hovered ? { color: "#888" } : {}),
+            }}
+          >
+            ↗
+          </span>
+        </div>
         <div
           style={{
             fontSize: 12,
@@ -128,7 +175,7 @@ function CaseCard({ project, index }: { project: CaseProject; index: number }) {
           {project.resultado}
         </div>
       </div>
-    </motion.div>
+    </motion.a>
   );
 }
 
