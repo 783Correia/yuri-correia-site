@@ -3,44 +3,15 @@
 @tailwind utilities;
 
 :root {
-  --bg: #0A0908;
-  --s1: #121110;
-  --s2: #1A1917;
-  --s3: #222120;
-  --border: rgba(255, 255, 255, 0.07);
-  --border-h: rgba(255, 255, 255, 0.13);
-  --text: #EDE9E4;
-  --muted: #5C5855;
-  --muted2: #3A3835;
-  --orange: #D95C1A;
-  --orange-s: rgba(217, 92, 26, 0.1);
-  --orange-b: rgba(217, 92, 26, 0.2);
-  --green: #34D399;
-  --radius: 20px;
-  --nav-bg: rgba(18, 17, 16, 0.88);
-  --logo-invert: 1;
-  --section-bg: var(--bg);
-  --section-bg-alt: #0E0D0B;
-}
-
-[data-theme="light"] {
-  --bg: #F5F3F0;
-  --s1: #FFFFFF;
-  --s2: #F0EDEA;
-  --s3: #E8E5E2;
-  --border: rgba(0, 0, 0, 0.08);
-  --border-h: rgba(0, 0, 0, 0.15);
-  --text: #1A1918;
-  --muted: #8A8580;
-  --muted2: #B5B0AA;
-  --orange: #D95C1A;
-  --orange-s: rgba(217, 92, 26, 0.08);
-  --orange-b: rgba(217, 92, 26, 0.18);
-  --green: #059669;
-  --nav-bg: rgba(255, 255, 255, 0.88);
-  --logo-invert: 0;
-  --section-bg: var(--bg);
-  --section-bg-alt: #EDEAE7;
+  --bg: #0a0a0a;
+  --bg-alt: #111111;
+  --text: #ffffff;
+  --text-secondary: #666666;
+  --text-muted: #444444;
+  --card-bg: #111111;
+  --card-border: rgba(255, 255, 255, 0.06);
+  --card-border-hover: rgba(255, 255, 255, 0.12);
+  --divider: rgba(255, 255, 255, 0.08);
 }
 
 * {
@@ -59,145 +30,51 @@ body {
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
-  transition: background 0.3s ease, color 0.3s ease;
+  font-family: var(--font-dm);
+  overflow-x: hidden;
 }
 
-/* Section wrapper — content max-width */
-.section-wrapper {
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+/* Wrapper */
+.wrapper {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 clamp(20px, 4vw, 48px);
+  padding: 0 24px;
   width: 100%;
 }
 
-/* Full-bleed section */
-.section-full {
-  width: 100%;
-  padding: clamp(64px, 10vw, 120px) 0;
-}
-
-.section-alt {
-  background: var(--section-bg-alt);
-}
-
-/* Mobile: hide CTA text, show only icon */
-@media (max-width: 480px) {
-  .nav-cta-text {
-    display: none !important;
-  }
-  .nav-cta {
-    padding: 8px 10px !important;
+@media (min-width: 768px) {
+  .wrapper {
+    padding: 0 48px;
   }
 }
 
-/* Animations */
-@keyframes rip {
-  0% { transform: scale(1); opacity: 0.5; }
-  100% { transform: scale(2.8); opacity: 0; }
+/* Section spacing */
+.section {
+  padding: 120px 0;
 }
 
-@keyframes pls {
+@media (max-width: 768px) {
+  .section {
+    padding: 80px 0;
+  }
+}
+
+/* Pulsing badge animation */
+@keyframes pulse-dot {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.3; }
 }
 
-@keyframes tick {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Scroll-triggered reveal */
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-.reveal-delay-4 { transition-delay: 0.4s; }
-
-/* Stats grid */
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-}
-
-/* Projects grid */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: clamp(16px, 3vw, 24px);
-}
-
-@media (max-width: 768px) {
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Fact grid */
-.fact-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: clamp(16px, 3vw, 24px);
-}
-
-@media (max-width: 600px) {
-  .fact-grid {
-    grid-template-columns: 1fr;
-  }
-  .stats-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-  }
-}
-
-/* Logos strip */
-.logos-strip {
-  display: flex;
-  align-items: center;
-  width: max-content;
-  animation: tick 20s linear infinite;
-}
-
-.logos-strip img {
-  height: 28px;
-  margin: 0 clamp(24px, 4vw, 48px);
-  opacity: 0.4;
-  filter: grayscale(1) brightness(var(--logo-brightness));
-  transition: opacity 0.3s ease;
-}
-
-[data-theme="light"] .logos-strip img {
-  filter: grayscale(1) brightness(0.3);
-}
-
-.logos-strip img:hover {
-  opacity: 0.7;
-}
-
-/* Services horizontal layout */
-.services-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(16px, 3vw, 24px);
-}
-
-@media (max-width: 768px) {
-  .services-row {
-    grid-template-columns: 1fr;
-  }
-}
+/* Counter number animation handled by framer-motion */

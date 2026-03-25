@@ -1,203 +1,220 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 
-type Section = "inicio" | "cases" | "servicos" | "sobre" | "faq";
-
-const navLinks: { id: Section; label: string }[] = [
-  { id: "cases", label: "Cases" },
-  { id: "servicos", label: "Serviços" },
-  { id: "sobre", label: "Sobre" },
-  { id: "faq", label: "FAQ" },
+const navLinks = [
+  { href: "/norte-digital", label: "Norte Digital" },
+  { href: "/#cases", label: "Cases" },
+  { href: "/#sobre", label: "Sobre" },
+  { href: "/#contato", label: "Contato" },
 ];
 
 export default function Navbar() {
-  const [activeSection, setActiveSection] = useState<Section>("inicio");
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
   const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem("theme") as "dark" | "light" | null;
-    if (saved) {
-      setTheme(saved);
-      document.documentElement.setAttribute("data-theme", saved);
-    }
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 60);
-
-      const sectionIds: Section[] = ["inicio", "cases", "servicos", "sobre", "faq"];
-      const offsets = sectionIds.map((id) => {
-        const el = document.getElementById(id);
-        return el ? el.offsetTop - 120 : 0;
-      });
-      const scrollY = window.scrollY;
-      let current: Section = "inicio";
-      for (let i = offsets.length - 1; i >= 0; i--) {
-        if (scrollY >= offsets[i]) {
-          current = sectionIds[i];
-          break;
-        }
-      }
-      setActiveSection(current);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollTo = (id: Section) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
-  const toggleTheme = () => {
-    const next = theme === "dark" ? "light" : "dark";
-    setTheme(next);
-    document.documentElement.setAttribute("data-theme", next);
-    localStorage.setItem("theme", next);
-  };
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [mobileOpen]);
 
   return (
-    <nav
-      style={{
-        position: "fixed",
-        top: 12,
-        left: "50%",
-        transform: "translateX(-50%)",
-        zIndex: 999,
-        background: scrolled ? "var(--nav-bg)" : "transparent",
-        backdropFilter: scrolled ? "blur(24px)" : "none",
-        WebkitBackdropFilter: scrolled ? "blur(24px)" : "none",
-        border: scrolled ? "1px solid var(--border)" : "1px solid transparent",
-        borderRadius: 100,
-        padding: "6px 10px 6px 18px",
-        display: "flex",
-        alignItems: "center",
-        gap: 4,
-        transition: "all 0.3s ease",
-        maxWidth: "calc(100vw - 16px)",
-      }}
-    >
-      {/* Logo */}
-      <button
-        onClick={() => scrollTo("inicio")}
+    <>
+      <motion.nav
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
         style={{
-          background: "none",
-          border: "none",
-          cursor: "pointer",
-          fontFamily: "var(--font-bebas)",
-          fontSize: 18,
-          letterSpacing: "0.1em",
-          color: "var(--text)",
-          marginRight: 12,
-          whiteSpace: "nowrap",
-        }}
-      >
-        CORRE<span style={{ color: "var(--orange)" }}>.</span>IA
-      </button>
-
-      {/* Nav links */}
-      {navLinks.map((link) => (
-        <button
-          key={link.id}
-          onClick={() => scrollTo(link.id)}
-          style={{
-            background: activeSection === link.id ? "var(--s3)" : "transparent",
-            border: "none",
-            cursor: "pointer",
-            borderRadius: 100,
-            padding: "7px 14px",
-            fontFamily: "var(--font-dm)",
-            fontSize: 13,
-            fontWeight: 400,
-            color: activeSection === link.id ? "var(--text)" : "var(--muted)",
-            transition: "all 0.2s ease",
-            whiteSpace: "nowrap",
-          }}
-        >
-          {link.label}
-        </button>
-      ))}
-
-      <div
-        style={{
-          width: 1,
-          height: 18,
-          background: "var(--border)",
-          margin: "0 6px",
-          flexShrink: 0,
-        }}
-      />
-
-      {/* Theme toggle */}
-      <button
-        onClick={toggleTheme}
-        style={{
-          width: 34,
-          height: 34,
-          borderRadius: 100,
-          border: "none",
-          cursor: "pointer",
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 1000,
+          padding: "0 24px",
+          height: 72,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          color: "var(--muted)",
-          background: "transparent",
-          transition: "all 0.2s ease",
-          flexShrink: 0,
+          background: scrolled ? "rgba(10,10,10,0.8)" : "transparent",
+          backdropFilter: scrolled ? "blur(20px)" : "none",
+          WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
+          borderBottom: scrolled ? "1px solid rgba(255,255,255,0.06)" : "1px solid transparent",
+          transition: "background 0.3s, border-bottom 0.3s, backdrop-filter 0.3s",
         }}
       >
-        {theme === "dark" ? (
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="12" cy="12" r="5" />
-            <line x1="12" y1="1" x2="12" y2="3" />
-            <line x1="12" y1="21" x2="12" y2="23" />
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-            <line x1="1" y1="12" x2="3" y2="12" />
-            <line x1="21" y1="12" x2="23" y2="12" />
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-          </svg>
-        ) : (
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
-          </svg>
-        )}
-      </button>
+        <div
+          style={{
+            maxWidth: 1200,
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            padding: "0 24px",
+          }}
+        >
+          <Link
+            href="/"
+            style={{
+              fontSize: 24,
+              fontWeight: 700,
+              letterSpacing: "-0.02em",
+              color: "#ffffff",
+            }}
+          >
+            YC
+          </Link>
 
-      {/* CTA */}
-      <a
-        href="https://wa.me/5554999003163"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="nav-cta"
-        style={{
-          background: "var(--text)",
-          color: "var(--bg)",
-          borderRadius: 100,
-          padding: "8px 16px",
-          fontFamily: "var(--font-dm)",
-          fontSize: 13,
-          fontWeight: 500,
-          textDecoration: "none",
-          display: "flex",
-          alignItems: "center",
-          gap: 6,
-          border: "none",
-          cursor: "pointer",
-          transition: "all 0.3s ease",
-          whiteSpace: "nowrap",
-          flexShrink: 0,
-        }}
-      >
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
-        </svg>
-        <span className="nav-cta-text">Contratar</span>
-      </a>
-    </nav>
+          {/* Desktop links */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 32,
+            }}
+            className="nav-desktop"
+          >
+            {navLinks.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                style={{
+                  fontSize: 14,
+                  color: "#666666",
+                  transition: "color 0.2s",
+                  fontWeight: 400,
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#ffffff")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#666666")}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <a
+              href="https://wa.me/5554999003163"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                background: "#ffffff",
+                color: "#000000",
+                borderRadius: 100,
+                padding: "8px 20px",
+                fontSize: 13,
+                fontWeight: 500,
+                transition: "transform 0.2s",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.02)")}
+              onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+            >
+              Falar no WhatsApp
+            </a>
+          </div>
+
+          {/* Mobile hamburger */}
+          <button
+            className="nav-mobile-btn"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            style={{
+              display: "none",
+              flexDirection: "column",
+              gap: 5,
+              padding: 8,
+            }}
+            aria-label="Menu"
+          >
+            <span style={{ width: 20, height: 1.5, background: "#fff", borderRadius: 2, transition: "all 0.2s", transform: mobileOpen ? "rotate(45deg) translate(4px, 4px)" : "none" }} />
+            <span style={{ width: 20, height: 1.5, background: "#fff", borderRadius: 2, transition: "all 0.2s", opacity: mobileOpen ? 0 : 1 }} />
+            <span style={{ width: 20, height: 1.5, background: "#fff", borderRadius: 2, transition: "all 0.2s", transform: mobileOpen ? "rotate(-45deg) translate(4px, -4px)" : "none" }} />
+          </button>
+        </div>
+      </motion.nav>
+
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            style={{
+              position: "fixed",
+              inset: 0,
+              zIndex: 999,
+              background: "rgba(10,10,10,0.98)",
+              backdropFilter: "blur(20px)",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 32,
+              paddingTop: 72,
+            }}
+          >
+            {navLinks.map((link, i) => (
+              <motion.div
+                key={link.label}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1, duration: 0.3 }}
+              >
+                <Link
+                  href={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  style={{
+                    fontSize: 28,
+                    fontWeight: 300,
+                    color: "#ffffff",
+                  }}
+                >
+                  {link.label}
+                </Link>
+              </motion.div>
+            ))}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.3 }}
+            >
+              <a
+                href="https://wa.me/5554999003163"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMobileOpen(false)}
+                style={{
+                  background: "#ffffff",
+                  color: "#000000",
+                  borderRadius: 100,
+                  padding: "14px 32px",
+                  fontSize: 15,
+                  fontWeight: 500,
+                  display: "inline-block",
+                }}
+              >
+                Falar no WhatsApp
+              </a>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <style jsx global>{`
+        @media (max-width: 768px) {
+          .nav-desktop { display: none !important; }
+          .nav-mobile-btn { display: flex !important; }
+        }
+      `}</style>
+    </>
   );
 }
