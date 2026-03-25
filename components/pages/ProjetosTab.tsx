@@ -56,20 +56,20 @@ const projects: Project[] = [
     description: "Imobiliário · Landing page de alto padrão · Captação de leads qualificados",
     pill: "Imóveis premium",
     image: "/projects/palazzo-giardino.png",
-    url: "#",
+    url: "https://palazzo-giardino-private.vercel.app/",
   },
   {
     name: "Paesaggio",
     description: "Paisagismo · Site institucional · Posicionamento e portfólio visual",
     image: "/projects/paesaggio.png",
-    url: "#",
+    url: "https://paesaggio-residencial.vercel.app/",
   },
   {
     name: "Tarvos",
     description: "Consultoria · Site corporativo · Presença digital estratégica",
     pill: "Corporativo",
     image: "/projects/tarvos.png",
-    url: "https://tarvos.com.br/",
+    url: "https://tarvos-brand-identity.vercel.app/",
   },
 ];
 
