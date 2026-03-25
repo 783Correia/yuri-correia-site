@@ -42,13 +42,6 @@ const cases: CaseProject[] = [
     url: "https://palazzo-giardino-private.vercel.app/",
   },
   {
-    name: "Mateus Pelizzaro",
-    segmento: "Saúde · Oftalmologia",
-    resultado: "Site institucional + 3 LPs por indicação direta de cliente",
-    image: "/projects/agilizza.png",
-    url: "#",
-  },
-  {
     name: "Agilizza Soluções",
     segmento: "B2B · Serviços técnicos",
     resultado: "Site para atrair e converter clientes locais",
