@@ -62,13 +62,6 @@ const cases: CaseProject[] = [
     image: "/projects/paesaggio.png",
     url: "https://paesaggio-residencial.vercel.app/",
   },
-  {
-    name: "Tarvos",
-    segmento: "Consultoria · Corporativo",
-    resultado: "Site corporativo · Presença digital estratégica",
-    image: "/projects/tarvos.png",
-    url: "https://tarvos-brand-identity.vercel.app/",
-  },
 ];
 
 function CaseCard({ project, index }: { project: CaseProject; index: number }) {

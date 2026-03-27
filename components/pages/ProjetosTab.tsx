@@ -64,13 +64,6 @@ const projects: Project[] = [
     image: "/projects/paesaggio.png",
     url: "https://paesaggio-residencial.vercel.app/",
   },
-  {
-    name: "Tarvos",
-    description: "Consultoria · Site corporativo · Presença digital estratégica",
-    pill: "Corporativo",
-    image: "/projects/tarvos.png",
-    url: "https://tarvos-brand-identity.vercel.app/",
-  },
 ];
 
 function ProjectCard({ project }: { project: Project }) {
