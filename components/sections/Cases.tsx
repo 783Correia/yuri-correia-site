@@ -62,6 +62,13 @@ const cases: CaseProject[] = [
     image: "/projects/paesaggio.png",
     url: "https://paesaggio-residencial.vercel.app/",
   },
+  {
+    name: "Dr. Mateus Pellizzaro",
+    segmento: "Saúde · Oftalmologia",
+    resultado: "Site institucional · Posicionamento digital para médico oftalmologista",
+    image: "/projects/drmateuspellizzaro.png",
+    url: "https://drmateuspellizzaro.vercel.app/",
+  },
 ];
 
 function CaseCard({ project, index }: { project: CaseProject; index: number }) {
