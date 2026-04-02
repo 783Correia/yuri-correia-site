@@ -69,6 +69,13 @@ const cases: CaseProject[] = [
     image: "/projects/drmateuspellizzaro.png",
     url: "https://drmateuspellizzaro.vercel.app/",
   },
+  {
+    name: "Viva Park Corporate",
+    segmento: "Imóveis · Salas comerciais",
+    resultado: "LP de lançamento imobiliário · Salas comerciais em Porto Belo-SC",
+    image: "/projects/viva-park.png",
+    url: "https://viva-park-corporate.vercel.app/",
+  },
 ];
 
 function CaseCard({ project, index }: { project: CaseProject; index: number }) {
