@@ -1,5 +1,11 @@
 /* Proposal light theme — isolated to .proposal-root, only loaded on proposal routes */
 
+/* Override the dark body background from globals.css */
+body:has(.proposal-root) {
+  background: hsl(0 0% 98%) !important;
+  color: hsl(215 28% 10%) !important;
+}
+
 .proposal-root {
   /* Shadcn-compatible HSL tokens (used by Tailwind theme extensions) */
   --background: 0 0% 98%;
