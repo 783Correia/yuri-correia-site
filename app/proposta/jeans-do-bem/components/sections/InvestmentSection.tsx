@@ -110,7 +110,7 @@ const PlanCard = ({ plan, index }: PlanCardProps) => {
         }`}
       >
         {plan.recommended && (
-          <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-4 py-1 text-xs font-bold tracking-wider uppercase whitespace-nowrap rounded-full">
+          <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white px-4 py-1 text-xs font-bold tracking-wider uppercase whitespace-nowrap rounded-full">
             Recomendado
           </span>
         )}

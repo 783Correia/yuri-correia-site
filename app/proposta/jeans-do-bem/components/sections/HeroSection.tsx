@@ -49,7 +49,7 @@ const HeroSection = () => {
 
         <button
           onClick={scrollToContent}
-          className="mt-12 inline-flex items-center gap-3 rounded-full border border-primary/40 bg-primary px-8 py-4 text-sm font-semibold text-primary-foreground transition-all hover:bg-primary/90 hover:shadow-[0_4px_20px_hsl(215_58%_22%/0.3)]"
+          className="mt-12 inline-flex items-center gap-3 rounded-full border border-primary/40 bg-primary px-8 py-4 text-sm font-semibold text-white transition-all hover:bg-primary/90 hover:shadow-[0_4px_20px_hsl(215_58%_22%/0.3)]"
         >
           Ver a Proposta Completa
           <ArrowDown className="h-4 w-4" />

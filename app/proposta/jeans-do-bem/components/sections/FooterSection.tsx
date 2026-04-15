@@ -68,7 +68,7 @@ const FooterSection = () => {
             href="https://wa.me/5554999003163?text=Ol%C3%A1%2C+vi+a+proposta+de+e-commerce+para+o+Jeans+do+Bem+e+quero+conversar."
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 rounded-full bg-primary px-10 py-4 text-base font-semibold text-primary-foreground transition-all hover:bg-primary/90 hover:shadow-[0_4px_20px_hsl(215_58%_22%/0.3)]"
+            className="inline-flex items-center gap-3 rounded-full bg-primary px-10 py-4 text-base font-semibold text-white transition-all hover:bg-primary/90 hover:shadow-[0_4px_20px_hsl(215_58%_22%/0.3)]"
           >
             <MessageCircle className="h-4 w-4" />
             Falar com Yuri no WhatsApp
