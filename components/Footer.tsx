@@ -59,7 +59,7 @@ export default function Footer() {
               <a href="https://instagram.com/ocorreiadm" target="_blank" rel="noopener noreferrer" style={{ transition: "color 0.2s" }} onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")} onMouseLeave={(e) => (e.currentTarget.style.color = "#666")}>
                 Instagram
               </a>
-              <a href="https://wa.me/5554999003163" target="_blank" rel="noopener noreferrer" style={{ transition: "color 0.2s" }} onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")} onMouseLeave={(e) => (e.currentTarget.style.color = "#666")}>
+              <a href="https://wa.me/5554996865236" target="_blank" rel="noopener noreferrer" style={{ transition: "color 0.2s" }} onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")} onMouseLeave={(e) => (e.currentTarget.style.color = "#666")}>
                 WhatsApp
               </a>
             </div>

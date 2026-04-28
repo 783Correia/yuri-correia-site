@@ -102,7 +102,7 @@ export default function Navbar() {
               </Link>
             ))}
             <a
-              href="https://wa.me/5554999003163"
+              href="https://wa.me/5554996865236"
               target="_blank"
               rel="noopener noreferrer"
               style={{
@@ -188,7 +188,7 @@ export default function Navbar() {
               transition={{ delay: 0.4, duration: 0.3 }}
             >
               <a
-                href="https://wa.me/5554999003163"
+                href="https://wa.me/5554996865236"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setMobileOpen(false)}

@@ -164,7 +164,7 @@ export default function HomeTab() {
           }}
         >
           <a
-            href="https://wa.me/5554999003163"
+            href="https://wa.me/5554996865236"
             target="_blank"
             rel="noopener noreferrer"
             style={{

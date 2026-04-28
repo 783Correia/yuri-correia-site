@@ -50,7 +50,7 @@ export default function CTAFinal() {
             }}
           >
             <a
-              href={`https://wa.me/5554999003163?text=${encodeURIComponent("Olá Yuri, quero agendar meu Norte Digital")}`}
+              href={`https://wa.me/5554996865236?text=${encodeURIComponent("Olá Yuri, quero agendar meu Norte Digital")}`}
               target="_blank"
               rel="noopener noreferrer"
               style={{
@@ -72,7 +72,7 @@ export default function CTAFinal() {
               Quero um Norte Digital
             </a>
             <a
-              href={`https://wa.me/5554999003163?text=${encodeURIComponent("Olá Yuri, quero um orçamento")}`}
+              href={`https://wa.me/5554996865236?text=${encodeURIComponent("Olá Yuri, quero um orçamento")}`}
               target="_blank"
               rel="noopener noreferrer"
               style={{

@@ -126,7 +126,7 @@ function ServiceCardComponent({
       </div>
 
       <a
-        href={`https://wa.me/5554999003163?text=${encodeURIComponent(card.whatsappMsg)}`}
+        href={`https://wa.me/5554996865236?text=${encodeURIComponent(card.whatsappMsg)}`}
         target="_blank"
         rel="noopener noreferrer"
         style={{

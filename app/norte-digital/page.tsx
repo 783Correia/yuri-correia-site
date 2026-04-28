@@ -32,7 +32,7 @@ const provas = [
   { nome: "Jacó Locadora", resultado: "1º lugar no Google em menos de 24h" },
 ];
 
-const whatsappUrl = `https://wa.me/5554999003163?text=${encodeURIComponent("Olá Yuri, quero agendar meu Norte Digital")}`;
+const whatsappUrl = `https://wa.me/5554996865236?text=${encodeURIComponent("Olá Yuri, quero agendar meu Norte Digital")}`;
 
 export default function NorteDigitalPage() {
   return (
