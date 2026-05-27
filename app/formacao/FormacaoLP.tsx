@@ -233,11 +233,20 @@ export default function FormacaoLP() {
     initGsap()
   }, [])
 
-  function enviar() {
+  async function enviar() {
     if (!nome.trim() || !whats.trim()) { setErros(true); return }
-    const msg = encodeURIComponent(`🔥 CORRE.AI — Lista de Espera\n\nNome: ${nome}\nWhatsApp: ${whats}`)
-    window.open(`https://wa.me/5554996865236?text=${msg}`, '_blank')
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyNSU8UCoCfOoZPm5ZAokuRgremuC1qgRJWADe2FmU6QcbjMA4AnOrdOWKGYgoOO190hA/exec'
+    const GRUPO_WA = 'https://chat.whatsapp.com/CHyAC6ut4HI7Mk4q9mZTFZ?s=cl&p=a&mlu=4'
+    try {
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome: nome.trim(), whats: whats.trim() }),
+      })
+    } catch { }
     setEnviado(true)
+    window.location.href = GRUPO_WA
   }
 
   const [openFaq, setOpenFaq] = useState<number | null>(null)
