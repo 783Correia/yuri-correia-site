@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import { aulas, instagramPosts } from './data'
-import type { Aula, InstaPost } from './data'
 
 type Tab = 'overview' | 'aulas' | 'instagram'
 type CheckMap = Record<string, boolean>
@@ -219,7 +218,7 @@ function Overview({ checks, setTab, setAulaIdx, setInstaIdx }: {
   )
 }
 
-function NextCard({ tipo, titulo, detalhe, onClick }: { tipo: string; titulo: string; detalhe: string; onClick: () => void }) {
+function NextCard({ tipo, titulo, onClick }: { tipo: string; titulo: string; detalhe?: string; onClick: () => void }) {
   return (
     <button onClick={onClick} style={{
       width: '100%', display: 'flex', alignItems: 'center', gap: '1rem',
@@ -330,7 +329,7 @@ function InstaView({ idx, setIdx, checks, toggle }: {
       {/* Gancho */}
       <div style={{ background: `rgba(200,100,40,0.06)`, border: `1px solid rgba(200,100,40,0.2)`, padding: '1rem 1.25rem', borderRadius: 4, marginBottom: '1.5rem' }}>
         <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: '0.55rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: ACCENT, marginBottom: 6 }}>Gancho (slide 1)</div>
-        <p style={{ fontSize: '0.875rem', color: CREAM, fontStyle: 'italic', lineHeight: 1.6 }}>"{post.gancho}"</p>
+        <p style={{ fontSize: '0.875rem', color: CREAM, fontStyle: 'italic', lineHeight: 1.6 }}>&ldquo;{post.gancho}&rdquo;</p>
       </div>
 
       {/* Slides */}
