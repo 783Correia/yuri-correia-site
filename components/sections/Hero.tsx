@@ -6,15 +6,15 @@ import Link from "next/link";
 import Image from "next/image";
 
 const cases = [
-  { src: "/projects/torno-metal.png",       label: "Torno Metal Everton Lopes", tag: "E-commerce",  result: "70 leads/mês a R$8,34 cada" },
-  { src: "/projects/sales-emb.png",          label: "Sales Embalagens",          tag: "B2B",          result: "De R$35k pra R$165k/mês" },
-  { src: "/projects/jaco-locadora.png",      label: "Jaco Locadora",             tag: "Industrial",   result: "1º lugar no Google em 24h" },
-  { src: "/projects/solcenter.png",          label: "Sol Center",                tag: "Energia Solar", result: "Site de autoridade + SEO" },
-  { src: "/projects/falimpeza.png",          label: "FA Limpeza",                tag: "Serviços",     result: "Presença digital local" },
-  { src: "/projects/drmateuspellizzaro.png", label: "Dr. Mateus Pellizzaro",     tag: "Saúde",        result: "Posicionamento digital médico" },
-  { src: "/projects/palazzo-giardino.png",   label: "Palazzo Giardino",          tag: "Imóveis",      result: "LP de imóvel premium" },
-  { src: "/projects/viva-park.png",          label: "Viva Park Corporate",       tag: "Imóveis",      result: "Lançamento imobiliário" },
-  { src: "/projects/paesaggio.png",          label: "Paesaggio",                 tag: "Paisagismo",   result: "Site institucional + portfólio" },
+  { src: "/projects/torno-metal.png",       label: "Torno Metal Everton Lopes", tag: "E-commerce",   result: "70 leads/mês a R$8,34 cada",        stat1: { value: "70",      label: "leads qualificados/mês" }, stat2: { value: "R$8,34",  label: "custo por lead" } },
+  { src: "/projects/sales-emb.png",          label: "Sales Embalagens",          tag: "B2B",           result: "De R$35k pra R$165k/mês",            stat1: { value: "R$165k",  label: "faturamento mensal gerado" }, stat2: { value: "4.7×",    label: "crescimento em receita" } },
+  { src: "/projects/jaco-locadora.png",      label: "Jaco Locadora",             tag: "Industrial",    result: "1º lugar no Google em 24h",          stat1: { value: "1º lugar", label: "no Google em menos de 24h" }, stat2: { value: "R$5k+",   label: "investimento total" } },
+  { src: "/projects/solcenter.png",          label: "Sol Center",                tag: "Energia Solar", result: "Site de autoridade + SEO local",     stat1: { value: "SEO",     label: "autoridade local estruturada" }, stat2: { value: "GEO",     label: "indexado por IAs" } },
+  { src: "/projects/falimpeza.png",          label: "FA Limpeza",                tag: "Serviços",      result: "Presença digital do zero",           stat1: { value: "Zero",    label: "presença digital antes" }, stat2: { value: "GMB",     label: "Google Maps otimizado" } },
+  { src: "/projects/drmateuspellizzaro.png", label: "Dr. Mateus Pellizzaro",     tag: "Saúde",         result: "Posicionamento digital médico",      stat1: { value: "Site",    label: "institucional + LASIK LP" }, stat2: { value: "SEO",     label: "otimizado pra buscas locais" } },
+  { src: "/projects/palazzo-giardino.png",   label: "Palazzo Giardino",          tag: "Imóveis",       result: "LP de imóvel premium exclusivo",     stat1: { value: "LP",      label: "lançamento exclusivo" }, stat2: { value: "Alto",    label: "padrão de conversão" } },
+  { src: "/projects/viva-park.png",          label: "Viva Park Corporate",       tag: "Imóveis",       result: "Lançamento imobiliário Porto Belo",  stat1: { value: "LP",      label: "lançamento imobiliário SC" }, stat2: { value: "UX",      label: "otimizado pra fechar" } },
+  { src: "/projects/paesaggio.png",          label: "Paesaggio",                 tag: "Paisagismo",    result: "Site institucional + portfólio",     stat1: { value: "Site",    label: "institucional completo" }, stat2: { value: "Visual",  label: "portfólio de alto impacto" } },
 ];
 
 const INTERVAL = 3200;
@@ -164,40 +164,25 @@ export default function Hero() {
               </AnimatePresence>
             </div>
 
-            {/* Progress dots */}
-            <div style={{ display: "flex", justifyContent: "center", gap: 5, marginTop: 12 }}>
-              {cases.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setCurrent(i)}
-                  style={{
-                    width: i === current ? 20 : 5,
-                    height: 5,
-                    borderRadius: 9999,
-                    background: i === current ? "#ea580c" : "rgba(255,255,255,0.15)",
-                    border: "none",
-                    cursor: "pointer",
-                    padding: 0,
-                    transition: "all 0.3s ease",
-                  }}
-                  aria-label={`Case ${i + 1}`}
-                />
-              ))}
-            </div>
           </div>
 
-          {/* Stats row */}
-          <div style={{ width: "100%", maxWidth: 360, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginTop: 4 }}>
-            {[
-              { value: "R$165k", label: "faturamento/mês gerado" },
-              { value: "1º lugar", label: "no Google em 24h" },
-            ].map((stat, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.7 + i * 0.1 }}
-                style={{ background: "#111", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 10, padding: "14px 16px" }}>
-                <div style={{ fontSize: 20, fontWeight: 600, letterSpacing: "-0.02em", color: "#fff", marginBottom: 4 }}>{stat.value}</div>
-                <div style={{ fontSize: 11, color: "#555", lineHeight: 1.4 }}>{stat.label}</div>
-              </motion.div>
-            ))}
+          {/* Dynamic stats — mudam com o case */}
+          <div style={{ width: "100%", maxWidth: 360, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginTop: 8 }}>
+            <AnimatePresence mode="wait">
+              {[card.stat1, card.stat2].map((stat, i) => (
+                <motion.div
+                  key={`${current}-${i}`}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.3, delay: i * 0.07 }}
+                  style={{ background: "#111", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 10, padding: "14px 16px" }}
+                >
+                  <div style={{ fontSize: 20, fontWeight: 600, letterSpacing: "-0.02em", color: "#fff", marginBottom: 4 }}>{stat.value}</div>
+                  <div style={{ fontSize: 11, color: "#555", lineHeight: 1.4 }}>{stat.label}</div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
           </div>
         </motion.div>
       </div>
