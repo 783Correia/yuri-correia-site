@@ -67,13 +67,29 @@ export default function Navbar() {
           <Link
             href="/"
             style={{
-              fontSize: 24,
-              fontWeight: 700,
-              letterSpacing: "-0.02em",
-              color: "#ffffff",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 10,
+              textDecoration: "none",
             }}
           >
-            YC
+            <div
+              style={{
+                width: 32,
+                height: 32,
+                borderRadius: "50%",
+                background: "linear-gradient(135deg, #ea580c, #f97316)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                boxShadow: "0 0 16px rgba(234,88,12,0.4)",
+              }}
+            >
+              <div style={{ width: 10, height: 10, background: "#0a0a0a", borderRadius: "50%" }} />
+            </div>
+            <span style={{ fontSize: 18, fontWeight: 700, letterSpacing: "-0.02em", color: "#ffffff" }}>
+              Yuri Correia
+            </span>
           </Link>
 
           {/* Desktop links */}
@@ -105,19 +121,10 @@ export default function Navbar() {
               href="https://wa.me/5554996865236"
               target="_blank"
               rel="noopener noreferrer"
-              style={{
-                background: "#ffffff",
-                color: "#000000",
-                borderRadius: 100,
-                padding: "8px 20px",
-                fontSize: 13,
-                fontWeight: 500,
-                transition: "transform 0.2s",
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.02)")}
-              onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+              className="btn-orange"
+              style={{ fontSize: 13, padding: "8px 20px" }}
             >
-              Falar no WhatsApp
+              <span style={{ position: "relative", zIndex: 1 }}>Falar no WhatsApp</span>
             </a>
           </div>
 
@@ -192,17 +199,10 @@ export default function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setMobileOpen(false)}
-                style={{
-                  background: "#ffffff",
-                  color: "#000000",
-                  borderRadius: 100,
-                  padding: "14px 32px",
-                  fontSize: 15,
-                  fontWeight: 500,
-                  display: "inline-block",
-                }}
+                className="btn-orange"
+                style={{ fontSize: 15, padding: "14px 32px" }}
               >
-                Falar no WhatsApp
+                <span style={{ position: "relative", zIndex: 1 }}>Falar no WhatsApp</span>
               </a>
             </motion.div>
           </motion.div>

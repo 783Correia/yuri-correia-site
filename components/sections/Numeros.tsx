@@ -100,6 +100,7 @@ export default function Numeros() {
                   letterSpacing: "-0.03em",
                   lineHeight: 1,
                   marginBottom: 12,
+                  color: "#ea580c",
                 }}
               >
                 <AnimatedCounter
