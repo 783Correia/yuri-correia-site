@@ -16,7 +16,7 @@ const cases = [
   { src: "/projects/falimpeza.png",          label: "FA Limpeza",                tag: "Serviços",      result: "Presença digital do zero",          stat1: { value: "Do zero",  label: "presença digital criada" },    stat2: { value: "GMB",     label: "Google Maps otimizado" } },
   { src: "/projects/palazzo-giardino.png",   label: "Palazzo Giardino",          tag: "Imóveis",       result: "LP de imóvel premium exclusivo",    stat1: { value: "LP",       label: "lançamento exclusivo" },       stat2: { value: "Alto",    label: "padrão de conversão" } },
   { src: "/projects/viva-park.png",          label: "Viva Park Corporate",       tag: "Imóveis",       result: "Lançamento imobiliário Porto Belo", stat1: { value: "LP",       label: "lançamento imobiliário SC" },  stat2: { value: "UX",      label: "otimizado pra fechar" } },
-  { src: "/projects/paesaggio.png",          label: "Paesaggio",                 tag: "Paisagismo",    result: "Site institucional + portfólio",    stat1: { value: "Site",     label: "institucional completo" },     stat2: { value: "Visual",  label: "portfólio de alto impacto" } },
+  { src: "/projects/paesaggio.png",          label: "Paesaggio",                 tag: "Paisagismo",    result: "Landing page de alto impacto",     stat1: { value: "LP",       label: "conversão de portfólio" },     stat2: { value: "Visual",  label: "identidade visual forte" } },
 ];
 
 const INTERVAL = 3200;
