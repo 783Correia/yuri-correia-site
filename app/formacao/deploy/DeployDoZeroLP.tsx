@@ -395,7 +395,7 @@ export default function DeployDoZeroLP() {
                 Todo mundo acha<br />que dá pra fazer.<br /><span style={{ color: acc }}>Ninguém mostra como.</span>
               </h2>
               <p style={{ fontSize: '.95rem', color: 'rgba(226,232,240,.45)', lineHeight: 1.7 }}>
-                Tem mil vídeos de "criei meu site com IA em 5 minutos". Nenhum mostra o processo completo — do briefing ao site no ar, com SEO técnico, LP que converte e o cliente atualizando sozinho.
+                {`Tem mil vídeos de "criei meu site com IA em 5 minutos". Nenhum mostra o processo completo — do briefing ao site no ar, com SEO técnico, LP que converte e o cliente atualizando sozinho.`}
               </p>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
